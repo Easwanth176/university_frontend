@@ -7,7 +7,7 @@ import backgroundImage from '../../University.jpg'; // Replace with the actual p
 export default function Login() {
   const [formData, setFormData] = useState({
     userType: 'option', // Default to 'student'
-    registrationNumber: '',
+    identifier: '', // Changed to a more generic 'identifier'
     password: '',
   });
   const [error, setError] = useState(null);
@@ -35,11 +35,11 @@ export default function Login() {
 
       if (response.ok) {
         console.log('Login successful');
-        const url = `/home?userType=${encodeURIComponent(formData.userType)}&registrationNumber=${encodeURIComponent(formData.registrationNumber)}&password=${encodeURIComponent(formData.password)}`;
+        const url = `/home?userType=${encodeURIComponent(formData.userType)}&identifier=${encodeURIComponent(formData.identifier)}&password=${encodeURIComponent(formData.password)}`;
         window.location.href = url;
       } else {
         console.error('Login failed:', data.message);
-        setError('Invalid registrationNumber or password');
+        setError('Invalid registrationNumber, email, or password');
       }
     } catch (error) {
       console.error('Error during login:', error);
@@ -49,65 +49,58 @@ export default function Login() {
 
   return (
     <div className="login-container">
-
-       <div className="container">
-      <div className="left-half">
-        <img
-          src={backgroundImage}
-          alt="Background"
-          width="1000" 
-          height="600"
-        />
-      </div>
-      <div className="right-half">
-        <div className="login-box">
-          <h2>Sathyabama</h2>
-          <h2>Login</h2>
-          <form onSubmit={handleFormSubmit}>
-            <div className="input-box">
-              <select
-                name="userType"
-                value={formData.userType}
-                onChange={handleInputChange}
-                required
-              >
-                <option value="option">Choose an option</option>
-                <option value="student">Student</option>
-                <option value="teacher">Teacher</option>
-              </select>
-            </div>
-            <div className="input-box">
-              <input
-                type="text"
-                name="registrationNumber"
-                value={formData.registrationNumber}
-                onChange={handleInputChange}
-                required
-              />
-              <label>Registration Number</label>
-            </div>
-            <div className="input-box">
-              <input
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleInputChange}
-                required
-              />
-              <label>Password</label>
-            </div>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            <div className="forgot-pass">
-              <a href="#">Forgot your password?</a>
-            </div>
-            <button type="submit" className="btn">
-              Login
-            </button>
-          </form>
+      <div className="container">
+        <div className="left-half">
+          <img src={backgroundImage} alt="Background" width="1000" height="600" />
+        </div>
+        <div className="right-half">
+          <div className="login-box">
+            <h2>Sathyabama</h2>
+            <h2>Login</h2>
+            <form onSubmit={handleFormSubmit}>
+              <div className="input-box">
+                <select
+                  name="userType"
+                  value={formData.userType}
+                  onChange={handleInputChange}
+                  required
+                >
+                  <option value="option">Choose an option</option>
+                  <option value="student">Student</option>
+                  <option value="teacher">Teacher</option>
+                </select>
+              </div>
+              <div className="input-box">
+                <input
+                  type="text"
+                  name="identifier" // Changed to a more generic 'identifier'
+                  value={formData.identifier}
+                  onChange={handleInputChange}
+                  required
+                />
+                <label>Registration Number or Email</label>
+              </div>
+              <div className="input-box">
+                <input
+                  type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  required
+                />
+                <label>Password</label>
+              </div>
+              {error && <p style={{ color: 'red' }}>{error}</p>}
+              <div className="forgot-pass">
+                <a href="#">Forgot your password?</a>
+              </div>
+              <button type="submit" className="btn">
+                Login
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-    </div>
-
   );
 }

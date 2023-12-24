@@ -106,7 +106,17 @@
   }
 
   
-  .query-left-container,
+  .query-left-container
+{ width: 1200px;
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #333;
+    margin-top: -100px;
+    margin-left:30px;
+    border-radius: 25px;
+    transition: box-shadow 0.3s ease-in-out;
+  
+}
   .query-right-container {
     width: 1200px;
     flex: 1;
@@ -116,6 +126,13 @@
     margin-left:30px;
     border-radius: 25px;
     transition: box-shadow 0.3s ease-in-out;
+    max-height: 500px; /* Set the maximum height */
+    overflow-y: auto; /* Add vertical scrollbar when needed */
+  }
+  .query-right-container p {
+
+    width: 70%;
+
   }
   
   .query-left-container:hover,
@@ -142,7 +159,27 @@
     border-left: 45px solid #93a5ab;
     border-radius: 40px;
   }
+
+  .Teacher-container {
+    margin-top: -50px;
+    margin-left: 30px;
+    margin-right: 30px;
+    width: 1200px;
+    border: 1px solid #333;
+    border-radius: 25px;
+    padding: 20px;
+    max-height: 400px; /* Set the maximum height */
+    overflow-y: auto; /* Add vertical scrollbar when needed */
+  }
   
+  .query1 {
+    border: 1px solid #333;
+    border-radius: 25px;
+    padding: 20px;
+    margin-top: 20px;
+  }
+  
+
 
   @media (max-width: 768px) {
     .navbar-brand img {
