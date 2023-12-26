@@ -5,6 +5,17 @@ import '../CSS/Home.css';
 
 import logoImage from '../../logo.png';
 import ownerImage from '../../founder.jpg';
+import collegeImage1 from '../Images/collage1.jpg';
+import collegeImage2 from '../Images/collage2.jpeg';
+import collegeImage3 from '../Images/collage3.jpg';
+import collegeImage4 from '../Images/collage4.jpg';
+import collegeImage5 from '../Images/collage5.jpg';
+import collegeImage6 from '../Images/collage6.jpeg';
+import collegeImage7 from '../Images/collage7.jpeg';
+import collegeImage8 from '../Images/collage8.jpeg';
+import collegeImage9 from '../Images/collage9.jpeg';
+import collegeImage10 from '../Images/collage10.jpeg';
+
 
 export default function Home() {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -16,14 +27,108 @@ export default function Home() {
     Name: '',
     Regarding: '',
     Description: '',
-    contact: '',
-  });
+    contact: '',});
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+
+  const CollegeImages = [
+    collegeImage1,
+    collegeImage2,
+    collegeImage3,
+    collegeImage4,
+    collegeImage5,
+    collegeImage6,
+    collegeImage7,
+    collegeImage8,
+    collegeImage9,
+    collegeImage10,
+  ];
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const identifier = queryParams.get('identifier');
   const userType = queryParams.get('userType');
+  const [messages, setMessages] = useState([]); 
+
+
+
+  // Notes
+  const [mode, setMode] = useState('add'); // 'add' or 'view'
+  const [noteData, setNoteData] = useState({
+    content: '',
+  });
+  const [notes, setNotes] = useState([]);
+  const [message, setMessage] = useState('');
+
+  const handleInputChange = (e) => {
+    setNoteData({ ...noteData, [e.target.name]: e.target.value });
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      if (mode === 'add') {
+        // Send a POST request to add a message
+        const response = await fetch('http://localhost:5000/messages/add', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ message: noteData.content }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          
+          setMessage('Message added successfully');
+          setNoteData({ content: '' });
+
+        } else {
+          console.error('Message submission failed:', data.error);
+          setMessage('Internal Server Error');
+        }
+      }
+    } catch (error) {
+      console.error(error);
+      setMessage('Internal Server Error');
+    }
+  };
+
+  const switchToAddMode = () => {
+    setMode('add');
+    setMessage('');
+  };
+
+  const switchToViewMode = () => {
+    setMode('view');
+    setMessage('');
+  };
+
+  useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/messages/all');
+        const data = await response.json();
+  
+        if (response.ok) {
+          console.log('Fetched messages:', data);
+          setMessages(data);
+        } else {
+          console.error('Failed to fetch messages:', data.error);
+        }
+      } catch (error) {
+        console.error('Error during message fetch:', error);
+      }
+    };
+  
+    fetchMessages();
+  }, []);
+  
+  
+  
+
 
   const handleLogout = () => {
     window.location.href = '/';
@@ -131,6 +236,21 @@ export default function Home() {
       console.error('Error fetching queries:', error);
     }
   };
+
+  const handlePrevClick = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex === 0 ? CollegeImages.length - 1 : prevIndex - 1));
+  };
+
+  const handleNextClick = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex === CollegeImages.length - 1 ? 0 : prevIndex + 1));
+  };
+ 
+
+    useEffect(() => {
+      const intervalId = setInterval(handleNextClick, 5000); // Automatically advance every 5 seconds
+      return () => clearInterval(intervalId);
+    }, []);
+
   
 
   useEffect(() => {
@@ -138,7 +258,6 @@ export default function Home() {
   }, []);
 
 
-  // Add a useEffect hook to fetch unresolved queries on component mount
   useEffect(() => {
     fetchUnresolvedQueries();
   }, []);
@@ -171,6 +290,7 @@ export default function Home() {
 
   return (
     <div className="big-container">
+
       <Navbar bg="dark" expand="lg" variant="dark">
         <Navbar.Brand href="#">
           <img
@@ -188,8 +308,8 @@ export default function Home() {
           <Nav className="ms-auto">
             <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link href="#query">Query</Nav.Link>
-            <Nav.Link href="#gallery">Gallery</Nav.Link>
-            <Nav.Link href="#contact">Other</Nav.Link>
+            <Nav.Link href="#chat">Chat</Nav.Link>
+            <Nav.Link href="#gallery">Other</Nav.Link>
             <Dropdown
               show={showDropdown}
               align="end"
@@ -202,6 +322,7 @@ export default function Home() {
               <Dropdown.Menu>
                 {userData.name && <Dropdown.ItemText>{userData.name}</Dropdown.ItemText>}
                 <Dropdown.ItemText>{identifier}</Dropdown.ItemText>
+                <Dropdown.ItemText>{userType}</Dropdown.ItemText>
                 <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
@@ -209,7 +330,6 @@ export default function Home() {
         </Navbar.Collapse>
       </Navbar>
 
-      {/* Home section */}
       <section className="home" id="home">
         <div style={{ padding: '8%' }} className="wrapper">
           <div className="cols cols0">
@@ -232,7 +352,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Query section for student*/}
+
 
 
       {userType === 'student' && (
@@ -322,31 +442,127 @@ export default function Home() {
        )}
 
 
-{userType === 'teacher' && (
-      <section className="Teacher-container">
-        <h3>Available Queries</h3>
-        {/* Display unresolved queries */}
-        {unresolvedQueries.map((query) => (
-          <div className="query1" key={query._id}>
-            <div className="query-header">
-              <h4>{query.Regarding}</h4>
-              <p>{query.Name}</p>
-            </div>
-            <p>{query.Description}</p>
-            <p>{query.contact}</p>
-            <input
-              type="text"
-              placeholder="solution"
-              value={solution}
-              onChange={(e) => setSolution(e.target.value)}
-            />
-            <button onClick={() => handleSolutionSubmit(query._id)}>Submit</button>
-          </div>
-        ))}
+                {userType === 'teacher' && ( 
+          <section className="Teacher-container">
+              <h3>Available Queries</h3>
+              {/* Display unresolved queries */}
+              {unresolvedQueries.map((query) => (
+                <div className="query1" key={query._id}>
+                  <div className="query-header">
+                    <h4>{query.Regarding}</h4>
+                    <p>{query.Name}</p>
+                  </div>
+                  <p>{query.Description}</p>
+                  <p>{query.contact}</p>
+                  <input
+                    type="text"
+                    placeholder="solution"
+                    value={solution}
+                    onChange={(e) => setSolution(e.target.value)}
+                  />
+                  <button onClick={() => handleSolutionSubmit(query._id)}>Submit</button>
+                </div>
+              ))}
       </section>
       )}
-     
-      {/* ... (Other sections) */}
+
+
+
+        <section className="gallery" id="gallery">
+              <h2>Gallery</h2>
+              <div className="certificates">
+                <div className="Certification">
+                  <button className="pre-btn" onClick={handlePrevClick}></button>
+                  <button className="nxt-btn" onClick={handleNextClick}></button>
+                  <div className="certificate-container">
+                    {CollegeImages.map((image, index) => (
+                      <div className="certificate-card" key={index}>
+                        <div className="certificate-image">
+                          <span className="certificate-tag">SIST</span>
+                          <img src={image} className="certificate-thumb" alt="" />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+        </section>
+
+                      
+                      {userType === 'teacher' && (
+                <section className ='notes'>
+                  <h2>Drop A Messgae</h2>
+                <div className="note-section">
+                  <div className="note-container">
+                    <div className="buttons-container">
+                      <button onClick={switchToAddMode} className={`mode-button ${mode === 'add' ? 'active' : ''}`}>
+                        Add Messgaes
+                      </button>
+                      <button onClick={switchToViewMode} className={`mode-button ${mode === 'view' ? 'active' : ''}`}>
+                        View Messgaes
+                      </button>
+                    </div>
+                    {mode === 'add' && (
+                      <form onSubmit={handleFormSubmit}>
+                        <div className="note-content">
+
+                          <textarea
+                            name="content"
+                            value={noteData.content}
+                            onChange={handleInputChange}
+                            className="note-textarea"
+                            placeholder="Messgae Content"
+                            required
+                          ></textarea>
+                        </div>
+                        <button type="submit" className="note-button">
+                          Add Messgae
+                        </button>
+                      </form>
+                    )}
+{mode === 'view' && (
+  <div className="view-notes-container">
+    <ul>
+    {messages.map((message) => (
+  <div key={message._id}>
+    {message.Message}
+  </div>
+))}
+
+    </ul>
+  </div>
+)}
+
+                    {message && <p className="note-message">{message}</p>}
+                  </div>
+                </div>
+                </section>
+                  )}
+
+
+                  {userType === 'student' && (
+                    <section className ='notes'>
+                      <h2>view A Messgae</h2> 
+                      <div className="note-section">
+                        <div className="note-container">
+                        <h3>Messgaes</h3>
+                          <div className="view-notes-container">
+                                  {messages.map((message) => (
+                                      <div key={message._id}>
+                                        {message.Message}
+                                      </div>
+                                    ))}
+                          </div>
+
+                        
+                          {message && <p className="note-message">{message}</p>}
+                        </div>
+                      </div>
+                    </section>
+                        )}
+
+
+
     </div>
   );
 }

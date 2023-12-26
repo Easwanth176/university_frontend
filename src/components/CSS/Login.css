@@ -196,6 +196,12 @@ h2 {
     padding: 0 6px;
     color: #0ef;
 }
+.input-box select:focus {
+    border-color: #0ef;
+    color: #000; /* Set the text color to black when the dropdown is active */
+}
+
+
 
 
 
