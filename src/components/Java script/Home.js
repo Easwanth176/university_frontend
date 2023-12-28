@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Navbar, Nav, Dropdown, Container, Row, Col, Form, Button } from 'react-bootstrap';
-import { useLocation } from 'react-router-dom';
+import { useLocation,Link } from 'react-router-dom';
+import { Navbar, Nav, Dropdown } from 'react-bootstrap';
+
 import '../CSS/Home.css';
 
 import logoImage from '../../logo.png';
@@ -20,15 +21,9 @@ import collegeImage10 from '../Images/collage10.jpeg';
 export default function Home() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [userData, setUserData] = useState({ name: '', number: '' });
-  const [unresolvedQueries, setUnresolvedQueries] = useState([]);
-  const [solution, setSolution] = useState('');
-  const [solvedQueries, setSolvedQueries] = useState([]);
-  const [queryFormData, setQueryFormData] = useState({
-    Name: '',
-    Regarding: '',
-    Description: '',
-    contact: '',});
-  const [submitSuccess, setSubmitSuccess] = useState(false);
+
+
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
 
@@ -57,7 +52,6 @@ export default function Home() {
   const [noteData, setNoteData] = useState({
     content: '',
   });
-  const [notes, setNotes] = useState([]);
   const [message, setMessage] = useState('');
 
   const handleInputChange = (e) => {
@@ -134,109 +128,7 @@ export default function Home() {
     window.location.href = '/';
   };
 
-  const handleQuerySubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const response = await fetch('http://localhost:5000/api/submitQuery', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(queryFormData),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        console.log('Query submitted successfully');
-        setSubmitSuccess(true);
-        setQueryFormData({
-          Name: '',
-          Regarding: '',
-          Description: '',
-          contact: '',
-        });
-      } else {
-        console.error('Query submission failed:', data.error);
-        // You can add logic to handle failure, such as displaying an error message
-      }
-    } catch (error) {
-      console.error('Error during query submission:', error);
-      // You can add logic to handle the error, such as displaying an error message
-    }
-  };
-
-  const handleQueryInputChange = (e) => {
-    setQueryFormData({
-      ...queryFormData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSolutionSubmit = async (queryId) => {
-    try {
-      const response = await fetch(`http://localhost:5000/api/submitSolution/${queryId}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ solution }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        console.log('Solution submitted successfully');
-        // Refresh the list of unresolved queries
-        fetchUnresolvedQueries();
-        // Optionally, clear the solution input
-        setSolution('');
-      } else {
-        console.error('Solution submission failed:', data.error);
-        // You can add logic to handle failure, such as displaying an error message
-      }
-    } catch (error) {
-      console.error('Error during solution submission:', error);
-      // You can add logic to handle the error, such as displaying an error message
-    }
-  };
-
-  const fetchUnresolvedQueries = async () => {
-    try {
-      const response = await fetch('http://localhost:5000/api/unresolvedQueries');
-      const data = await response.json();
-
-      if (response.ok) {
-        setUnresolvedQueries(data);
-      } else {
-        console.error('Error fetching unresolved queries:', data.error);
-      }
-    } catch (error) {
-      console.error('Error fetching unresolved queries:', error);
-    }
-  };
-
-  const fetchQueries = async () => {
-    try {
-      const unresolvedResponse = await fetch('http://localhost:5000/api/unresolvedQueries');
-      const solvedResponse = await fetch('http://localhost:5000/api/solvedQueries');
-  
-      const unresolvedData = await unresolvedResponse.json();
-      const solvedData = await solvedResponse.json();
-  
-      if (unresolvedResponse.ok && solvedResponse.ok) {
-        setUnresolvedQueries(unresolvedData);
-        // Set only the solved queries in the state
-        setSolvedQueries(solvedData);
-      } else {
-        console.error('Error fetching queries:', unresolvedData.error || solvedData.error);
-      }
-    } catch (error) {
-      console.error('Error fetching queries:', error);
-    }
-  };
-
+ 
   const handlePrevClick = () => {
     setCurrentImageIndex((prevIndex) => (prevIndex === 0 ? CollegeImages.length - 1 : prevIndex - 1));
   };
@@ -253,14 +145,7 @@ export default function Home() {
 
   
 
-  useEffect(() => {
-    fetchQueries();
-  }, []);
 
-
-  useEffect(() => {
-    fetchUnresolvedQueries();
-  }, []);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -307,7 +192,7 @@ export default function Home() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#query">Query</Nav.Link>
+            <Link to="/query" className="nav-link">Query</Link>
             <Nav.Link href="#chat">Chat</Nav.Link>
             <Nav.Link href="#gallery">Other</Nav.Link>
             <Dropdown
@@ -354,10 +239,8 @@ export default function Home() {
 
 
 
-
-      {userType === 'student' && (
+{/* 
       <section className="query" id="query">
-        <h2>Post a Query</h2>
         <Container>
           <Row>
             <Col md={6} className="query-left-container">
@@ -420,32 +303,6 @@ export default function Home() {
             </Col>
 
             <Col md={6} className="query-right-container">
-              <h3>Answered Queries</h3>
-              {/* Display answered queries */}
-              {solvedQueries.map((query) => (
-                <div className="query1" key={query._id}>
-                  {/* Add content for answered queries here */}
-                  <div className="query-header">
-                    <h4>{query.Regarding}</h4>
-                    <p>{query.Name}</p>
-                  </div>
-                  <p>{query.Description}</p>
-                  <p>{query.contact}</p>
-                  <p>Solution: {query.solution}</p>
-                </div>
-              ))}
-          </Col>
-
-          </Row>
-        </Container>
-      </section>
-       )}
-
-
-                {userType === 'teacher' && ( 
-          <section className="Teacher-container">
-              <h3>Available Queries</h3>
-              {/* Display unresolved queries */}
               {unresolvedQueries.map((query) => (
                 <div className="query1" key={query._id}>
                   <div className="query-header">
@@ -463,8 +320,30 @@ export default function Home() {
                   <button onClick={() => handleSolutionSubmit(query._id)}>Submit</button>
                 </div>
               ))}
+          </Col>
+
+          </Row>
+        </Container>
       </section>
-      )}
+
+
+              
+          <section className="Teacher-container">
+
+                     <h3>Answered Queries</h3>
+              {solvedQueries.map((query) => (
+                <div className="query1" key={query._id}>
+                  <div className="query-header">
+                    <h4>{query.Regarding}</h4>
+                    <p>{query.Name}</p>
+                  </div>
+                  <p>{query.Description}</p>
+                  <p>{query.contact}</p>
+                  <p>Solution: {query.solution}</p>
+                </div>
+              ))}
+      </section>
+       */}
 
 
 
@@ -487,6 +366,19 @@ export default function Home() {
                 </div>
               </div>
         </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                       
                       {userType === 'teacher' && (
