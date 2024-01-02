@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation,Link } from 'react-router-dom';
-import { Navbar, Nav, Dropdown } from 'react-bootstrap';
+import { Navbar, Nav, Dropdown,Carousel } from 'react-bootstrap';
+
+
 
 import '../CSS/Home.css';
 
 import logoImage from '../../logo.png';
-import ownerImage from '../../founder.jpg';
 import collegeImage1 from '../Images/collage1.jpg';
 import collegeImage2 from '../Images/collage2.jpeg';
 import collegeImage3 from '../Images/collage3.jpg';
@@ -128,6 +129,10 @@ export default function Home() {
     window.location.href = '/';
   };
 
+  const viewProfile = () => {
+    window.location.href = '/profile';
+  };
+
  
   const handlePrevClick = () => {
     setCurrentImageIndex((prevIndex) => (prevIndex === 0 ? CollegeImages.length - 1 : prevIndex - 1));
@@ -191,9 +196,9 @@ export default function Home() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Link to="/query" className="nav-link">Query</Link>
-            <Nav.Link href="#chat">Chat</Nav.Link>
+           <Nav.Link href={`#home?identifier=${identifier}&userType=${userType}`}>Home</Nav.Link>
+            <Link to={`/query?identifier=${identifier}&userType=${userType}`} className="nav-link">Query</Link>
+            <Link to={`/chat?identifier=${identifier}&userType=${userType}`} className="nav-link">Chat</Link>
             <Nav.Link href="#gallery">Other</Nav.Link>
             <Dropdown
               show={showDropdown}
@@ -208,7 +213,9 @@ export default function Home() {
                 {userData.name && <Dropdown.ItemText>{userData.name}</Dropdown.ItemText>}
                 <Dropdown.ItemText>{identifier}</Dropdown.ItemText>
                 <Dropdown.ItemText>{userType}</Dropdown.ItemText>
+                <Dropdown.Item onClick={viewProfile}>View</Dropdown.Item>
                 <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+
               </Dropdown.Menu>
             </Dropdown>
           </Nav>
@@ -228,153 +235,46 @@ export default function Home() {
           </div>
           <div className="cols cols1">
             <div className="imgbox">
-              <img
-                src={ownerImage}
-                alt="Owner Logo"
-              />
+             
+
+            <Carousel>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src="https://images.collegedunia.com/public/college_data/images/campusimage/155064512020180724050340_2.jpg"
+          alt="First slide"
+        />
+
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src="https://nettv4u.com/imagine/sathyabama-university-pre-launch-event-of-sathyabamasat-lovely-stills-22.jpg"
+          alt="Second slide"
+        />
+
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src="https://so7.filmy.today/albums/raji/uploads/Kollywood/2016/May/03/PRESS_RELEASE_AND_PHOTOS_OF_SATHYABAMA_UNIVERSITY_PRE-_LAUNCH_EVENT_OF_SATHYABAMASAT/PRESS-RELEASE-AND-PHOTOS-OF-SATHYABAMA-UNIVERSITY-PRE--LAUNCH-EVENT-OF-SATHYABAMASAT-31f5d63814720868283b5fe27287da2706.jpg"
+          alt="Third slide"
+        />
+      </Carousel.Item>
+    </Carousel>
+
+
+
+
+
+
+
+
+
             </div>
           </div>
         </div>
       </section>
-
-
-
-{/* 
-      <section className="query" id="query">
-        <Container>
-          <Row>
-            <Col md={6} className="query-left-container">
-              <h3>Post Query</h3>
-              {submitSuccess && <p style={{ color: 'green' }}>Query submitted successfully!</p>}
-              <Form onSubmit={handleQuerySubmit}>
-                <Form.Group controlId="formName">
-                  <Form.Label>Name</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter your name"
-                    name="Name"
-                    value={queryFormData.Name}
-                    onChange={handleQueryInputChange}
-                    required
-                  />
-                </Form.Group>
-
-                <Form.Group controlId="formQueryRegarding">
-                  <Form.Label>Query Regarding</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter your query subject"
-                    name="Regarding"
-                    value={queryFormData.Regarding}
-                    onChange={handleQueryInputChange}
-                    required
-                  />
-                </Form.Group>
-
-                <Form.Group controlId="formShortDescription">
-                  <Form.Label>Short Description</Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    rows={3}
-                    placeholder="Enter a short description"
-                    name="Description"
-                    value={queryFormData.Description}
-                    onChange={handleQueryInputChange}
-                    required
-                  />
-                </Form.Group>
-
-                <Form.Group controlId="formContactNumber">
-                  <Form.Label>Contact Number</Form.Label>
-                  <Form.Control
-                    type="tel"
-                    placeholder="Enter your contact number"
-                    name="contact"
-                    value={queryFormData.contact}
-                    onChange={handleQueryInputChange}
-                    required
-                  />
-                </Form.Group>
-
-                <Button variant="primary" type="submit">
-                  Submit
-                </Button>
-              </Form>
-            </Col>
-
-            <Col md={6} className="query-right-container">
-              {unresolvedQueries.map((query) => (
-                <div className="query1" key={query._id}>
-                  <div className="query-header">
-                    <h4>{query.Regarding}</h4>
-                    <p>{query.Name}</p>
-                  </div>
-                  <p>{query.Description}</p>
-                  <p>{query.contact}</p>
-                  <input
-                    type="text"
-                    placeholder="solution"
-                    value={solution}
-                    onChange={(e) => setSolution(e.target.value)}
-                  />
-                  <button onClick={() => handleSolutionSubmit(query._id)}>Submit</button>
-                </div>
-              ))}
-          </Col>
-
-          </Row>
-        </Container>
-      </section>
-
-
-              
-          <section className="Teacher-container">
-
-                     <h3>Answered Queries</h3>
-              {solvedQueries.map((query) => (
-                <div className="query1" key={query._id}>
-                  <div className="query-header">
-                    <h4>{query.Regarding}</h4>
-                    <p>{query.Name}</p>
-                  </div>
-                  <p>{query.Description}</p>
-                  <p>{query.contact}</p>
-                  <p>Solution: {query.solution}</p>
-                </div>
-              ))}
-      </section>
-       */}
-
-
-
-        <section className="gallery" id="gallery">
-              <h2>Gallery</h2>
-              <div className="certificates">
-                <div className="Certification">
-                  <button className="pre-btn" onClick={handlePrevClick}></button>
-                  <button className="nxt-btn" onClick={handleNextClick}></button>
-                  <div className="certificate-container">
-                    {CollegeImages.map((image, index) => (
-                      <div className="certificate-card" key={index}>
-                        <div className="certificate-image">
-                          <span className="certificate-tag">SIST</span>
-                          <img src={image} className="certificate-thumb" alt="" />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-        </section>
-
-
-
-
-
-
-
-
-
 
 
 
@@ -395,23 +295,45 @@ export default function Home() {
                       </button>
                     </div>
                     {mode === 'add' && (
-                      <form onSubmit={handleFormSubmit}>
-                        <div className="note-content">
+  <form onSubmit={handleFormSubmit}>
+    <div className="note-content">
+        <div className="note-header">
+      <label >Select Section:</label>
+      <select
+        id="student"
+        name="studentId"
+        className="note-dropdown"
+        required
+      >
+          <option>All Sections</option>
+          <option>section 1</option>
+          <option>section 2</option>
+          <option>section 3</option>
+          <option>section 4</option>
+          <option>section 5</option>
 
-                          <textarea
-                            name="content"
-                            value={noteData.content}
-                            onChange={handleInputChange}
-                            className="note-textarea"
-                            placeholder="Messgae Content"
-                            required
-                          ></textarea>
-                        </div>
-                        <button type="submit" className="note-button">
-                          Add Messgae
-                        </button>
-                      </form>
-                    )}
+     
+      </select>
+      </div>
+
+      <textarea
+        name="content"
+        value={noteData.content}
+        onChange={handleInputChange}
+        className="note-textarea"
+        placeholder="Message Content"
+        required
+      ></textarea>
+    </div>
+    <button type="submit" className="note-button">
+      Add Message
+    </button>
+  </form>
+)}
+
+
+
+
 {mode === 'view' && (
   <div className="view-notes-container">
     <ul>
@@ -437,7 +359,7 @@ export default function Home() {
                       <h2>view A Messgae</h2> 
                       <div className="note-section">
                         <div className="note-container">
-                        <h3>Messgaes</h3>
+                        <h4>Messgaes</h4>
                           <div className="view-notes-container">
                                   {messages.map((message) => (
                                       <div key={message._id}>
@@ -452,6 +374,29 @@ export default function Home() {
                       </div>
                     </section>
                         )}
+
+
+              
+        <section className="gallery" id="gallery">
+              <h2>Gallery</h2>
+              <div className="certificates">
+                <div className="Certification">
+                  <button className="pre-btn" onClick={handlePrevClick}></button>
+                  <button className="nxt-btn" onClick={handleNextClick}></button>
+                  <div className="certificate-container">
+                    {CollegeImages.map((image, index) => (
+                      <div className="certificate-card" key={index}>
+                        <div className="certificate-image">
+                          <span className="certificate-tag">SIST</span>
+                          <img src={image} className="certificate-thumb" alt="" />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+        </section>
+
 
 
 

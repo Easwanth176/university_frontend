@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import '../CSS/Login.css';
 import { Link } from 'react-router-dom';
 
-import backgroundImage from '../../University.jpg'; // Replace with the actual path
+import backgroundImage from '../../University.jpg'; 
 
 export default function Login() {
   const [formData, setFormData] = useState({
-    userType: 'option', // Default to 'student'
-    identifier: '', // Changed to a more generic 'identifier'
+    userType: 'option', 
+    identifier: '', 
     password: '',
   });
   const [error, setError] = useState(null);

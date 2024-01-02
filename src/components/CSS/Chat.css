@@ -1,0 +1,55 @@
+.chat-container {
+    display: flex;
+  }
+  
+  .teachers-list {
+    width: 30%;
+    border-right: 1px solid #ccc;
+    box-sizing: border-box;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  
+  .teacher-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 0px;
+    border: 1px solid #ccc;
+  }
+  .drop-box
+  {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    margin: 10px;
+   
+  }
+  .teacher-item img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .chat-interface {
+    width: 70%;
+    padding: 20px;
+    box-sizing: border-box;
+    max-height:80vh;
+  }
+  
+  .message-area{
+    height: 100%;
+    overflow-y: auto;
+    max-height: 50vh;
+    min-height: 50vh;
+    border-top: 1px solid #000000;
+  }
+  .selected-teacher img
+    {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }

@@ -1,12 +1,36 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Navbar, Nav, Dropdown } from 'react-bootstrap';
 import '../CSS/Query.css';
+import logoImage from '../../logo.png';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function Query() {
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [unresolvedQueries, setUnresolvedQueries] = useState([]);
   const [solution, setSolution] = useState('');
   const [solvedQueries, setSolvedQueries] = useState([]);
+  const location = useLocation();
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [userData, setUserData] = useState({});
+  const queryParams = new URLSearchParams(location.search);
+  const identifier = queryParams.get('identifier');
+  const userType = queryParams.get('userType');
+  const [filteredQueries, setFilteredQueries] = useState([]); // Add this line
+
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSearch = () => {
+    const filteredQueries = solvedQueries.filter((query) =>
+      query.Regarding.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredQueries(filteredQueries);
+    console.log('Filtered Queries:', filteredQueries);
+  };
+
+  const handleLogout = () => {
+    window.location.href = '/';
+  };
 
   const [queryFormData, setQueryFormData] = useState({
     Name: '',
@@ -54,7 +78,7 @@ export default function Query() {
 
       if (response.ok) {
         console.log('Query submitted successfully');
-        setSubmitSuccess();
+        setSubmitSuccess(true);
         setQueryFormData({
           Name: '',
           Regarding: '',
@@ -76,14 +100,21 @@ export default function Query() {
     });
   };
 
-  const handleSolutionSubmit = async (queryId) => {
+  const handleSolutionSubmit = async (queryId, userName, solutionText) => {
+    // Validate that both name and solution are provided
+    if (!userName || !solutionText) {
+      console.error('Name and Solution are required.');
+      // You can handle the validation error, e.g., show an alert or set an error state.
+      return;
+    }
+
     try {
       const response = await fetch(`http://localhost:5000/api/submitSolution/${queryId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ solution: solution }),
+        body: JSON.stringify({ solution: solutionText, solutionName: userName }),
       });
 
       const data = await response.json();
@@ -92,6 +123,7 @@ export default function Query() {
         console.log('Solution submitted successfully');
         fetchUnresolvedQueries();
         setSolution('');
+        setQueryFormData({ ...queryFormData, Name: '' });
       } else {
         console.error('Solution submission failed:', data.error);
       }
@@ -134,6 +166,33 @@ export default function Query() {
     }
   };
 
+  const [activeQueryIndex, setActiveQueryIndex] = useState(0);
+  const [activeSolutionIndex, setActiveSolutionIndex] = useState(0);
+
+  const handlePrevSolution = () => {
+    setActiveSolutionIndex((prevIndex) => (prevIndex === 0 ? prevIndex : prevIndex - 1));
+  };
+
+  const handleNextSolution = () => {
+    setActiveSolutionIndex((prevIndex) => {
+      const solutionsLength = solvedQueries[activeQueryIndex]?.solutions.length || 0;
+      return prevIndex === solutionsLength - 1 ? prevIndex : prevIndex + 1;
+    });
+  };
+
+  const handlePrevQuery = () => {
+    setActiveQueryIndex((prevIndex) => (prevIndex === 0 ? prevIndex : prevIndex - 1));
+    setActiveSolutionIndex(0);
+  };
+
+  const handleNextQuery = () => {
+    setActiveQueryIndex((prevIndex) => {
+      const queriesLength = solvedQueries.length;
+      return prevIndex === queriesLength - 1 ? prevIndex : prevIndex + 1;
+    });
+    setActiveSolutionIndex(0);
+  };
+
   useEffect(() => {
     fetchQueries();
   }, []);
@@ -142,38 +201,116 @@ export default function Query() {
     fetchUnresolvedQueries();
   }, []);
 
-  const renderSolvedQueries = () => {
-    const queriesWithSolutions = solvedQueries.filter((query) => query.solutions.length > 0);
-
-    return queriesWithSolutions.map((query) => (
-      <Col key={query._id} md={3} className="category-column">
-      <h4>{query.Regarding}</h4>
-      <div className="query1">
-        <div className="query-header">
-          <h5>{query.Name}</h5>
-        </div>
-        <p>{query.Description}</p>
-        <p>{query.contact}</p>
-        <p>Solutions:</p>
-        {/* Map over the solutions and display each one */}
-        {query.solutions.map((solution, index) => (
-          <p key={index}>Solution {index + 1}: {solution.solutionText}</p>
-        ))}
-      </div>
-    </Col>
-     
-    ));
-  };
-
   return (
     <div>
-      <section className="query" id="query">
-        <h2>Post a Query</h2>
+      <Navbar bg="dark" expand="lg" variant="dark">
+        <Navbar.Brand href="#">
+          <img
+            src={logoImage}
+            width="30"
+            height="30"
+            className="d-inline-block align-top"
+            alt="`Your` Logo"
+          />
+        </Navbar.Brand>
+        <span className="company-name">Satyabhama University</span>
+
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ms-auto">
+          <Link to={`/home?identifier=${identifier}&userType=${userType}`} className="nav-link">Home</Link>
+            <Link to={`/query?identifier=${identifier}&userType=${userType}`} className="nav-link">Query</Link>
+            <Link to={`/chat?identifier=${identifier}&userType=${userType}`} className="nav-link">Chat</Link>
+            <Nav.Link href={`#gallery?identifier=${identifier}&userType=${userType}`}>Other</Nav.Link>
+            <Dropdown
+              show={showDropdown}
+              align="end"
+              onClick={() => setShowDropdown(!showDropdown)}
+            >
+              <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                Profile
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                {userData.name && <Dropdown.ItemText>{userData.name}</Dropdown.ItemText>}
+                <Dropdown.ItemText>{identifier}</Dropdown.ItemText>
+                <Dropdown.ItemText>{userType}</Dropdown.ItemText>
+                <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+      <h2>Available Query</h2>
+
+      <section className="answer-section">
+        <Col md={6} className="solution-container">
+          {unresolvedQueries.map((query) => (
+            <div className="query-item" key={query._id}>
+              <div className="left-side">
+                <u>
+                  <h4>{query.Regarding}</h4>
+                </u>
+                <p>
+                  <b>Name:</b> {query.Name}
+                </p>
+                <p>
+                  <b>Description:</b> {query.Description}
+                </p>
+                <p>
+                  <b>Contact Number:</b> {query.contact}
+                </p>
+              </div>
+              <div className="right-side">
+                <input
+                  type="text"
+                  placeholder="Name"
+                  value={queryFormData.Name}
+                  onChange={(e) =>
+                    setQueryFormData({ ...queryFormData, Name: e.target.value })
+                  }
+                  required
+                />
+                <input
+                  type="text"
+                  placeholder="Solution"
+                  value={solution}
+                  onChange={(e) => setSolution(e.target.value)}
+                />
+
+                <div className="checkbox-container">
+                  <input
+                    type="checkbox"
+                    checked={query.isResolved}
+                    onChange={() =>
+                      handleResolveCheckboxChange(query._id, !query.isResolved)
+                    }
+                  />
+                  <label>Resolved</label>
+                </div>
+                <button
+                  onClick={() =>
+                    handleSolutionSubmit(query._id, queryFormData.Name, solution)
+                  }
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          ))}
+        </Col>
+      </section>
+
+      <h2>Post a Query</h2>
+
+      <section className="query-section" id="query">
         <Container>
           <Row>
-            <Col md={6} className="query-left-container">
+            <Col md={6} className="query-container">
               <h3>Post Query</h3>
-              {submitSuccess && <p style={{ color: 'green' }}>Query submitted successfully!</p>}
+              {submitSuccess && (
+                <p style={{ color: 'green' }}>Query submitted successfully!</p>
+              )}
               <Form onSubmit={handleQuerySubmit}>
                 <Form.Group controlId="formName">
                   <Form.Label>Name</Form.Label>
@@ -229,41 +366,126 @@ export default function Query() {
                 </Button>
               </Form>
             </Col>
-
-            <Col md={6} className="query-right-container">
-              {unresolvedQueries.map((query) => (
-                <div className="query1" key={query._id}>
-                  <div className="query-header">
-                    <h4>{query.Regarding}</h4>
-                    <p>{query.Name}</p>
-                  </div>
-                  <p>{query.Description}</p>
-                  <p>{query.contact}</p>
-                  <input
-                    type="text"
-                    placeholder="solution"
-                    value={solution}
-                    onChange={(e) => setSolution(e.target.value)}
-                  />
-                  <input
-                    type="checkbox"
-                    checked={query.isResolved}
-                    onChange={() => handleResolveCheckboxChange(query._id, !query.isResolved)}
-                  />
-                  <label>Resolved</label>
-                  <button onClick={() => handleSolutionSubmit(query._id)}>Submit</button>
-                </div>
-              ))}
-            </Col>
           </Row>
         </Container>
       </section>
 
-      <section className="Teacher-container">
-        <Container>
-          <Row className="category-row">{renderSolvedQueries()}</Row>
-        </Container>
-      </section>
+      <h2>Solved Queries</h2>
+
+      <section className="teacher-container">
+  <Container>
+    <div className="Search-bar">
+      <input
+        type="text"
+        placeholder="Search"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      <button onClick={handleSearch}>Search</button>
+    </div>
+    <Row className="category-row">
+      <Col md={12} className="category-column teacher-column">
+        {searchTerm !== '' ? (
+          filteredQueries.map((query, index) => (
+            <div
+              key={query._id}
+              className={`query-container ${
+                index === activeQueryIndex ? 'active' : ''
+              }`}
+            >
+              <div className="query-details">
+                <h4>Query Regarding: {query.Regarding}</h4>
+                <h5>Name: {query.Name}</h5>
+                <p>Description: {query.Description}</p>
+                <p>Contact: {query.contact}</p>
+              </div>
+              <div className="solution-slider">
+                <div className="solution-card">
+                  <p>Solution {activeSolutionIndex + 1}</p>
+                  <p>
+                    Name: {query.solutions[activeSolutionIndex]?.solutionName}:{' '}
+                  </p>
+                  <p>
+                    Solution :{' '}
+                    {query.solutions[activeSolutionIndex]?.solutionText}
+                  </p>
+                </div>
+              </div>
+              <div className="solution-navigation">
+                <button
+                  onClick={handlePrevSolution}
+                  disabled={activeSolutionIndex === 0}
+                >
+                  Prev
+                </button>
+                <button
+                  onClick={handleNextSolution}
+                  disabled={
+                    activeSolutionIndex ===
+                    (query.solutions.length > 0
+                      ? query.solutions.length - 1
+                      : 0)
+                  }
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+          ))
+        ) : (
+          solvedQueries.map((query, index) => (
+            <div
+              key={query._id}
+              className={`query-container ${
+                index === activeQueryIndex ? 'active' : ''
+              }`}
+            >
+              <div className="query-details">
+                <h4>Query Regarding: {query.Regarding}</h4>
+                <h5>Name: {query.Name}</h5>
+                <p>Description: {query.Description}</p>
+                <p>Contact: {query.contact}</p>
+              </div>
+              <div className="solution-slider">
+                <div className="solution-card">
+                  <p>Solution {activeSolutionIndex + 1}</p>
+                  <p>
+                    Name: {query.solutions[activeSolutionIndex]?.solutionName}:{' '}
+                  </p>
+                  <p>
+                    Solution :{' '}
+                    {query.solutions[activeSolutionIndex]?.solutionText}
+                  </p>
+                </div>
+              </div>
+              <div className="solution-navigation">
+                <button
+                  onClick={handlePrevSolution}
+                  disabled={activeSolutionIndex === 0}
+                >
+                  Prev
+                </button>
+                <button
+                  onClick={handleNextSolution}
+                  disabled={
+                    activeSolutionIndex ===
+                    (query.solutions.length > 0
+                      ? query.solutions.length - 1
+                      : 0)
+                  }
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+          ))
+        )}
+      </Col>
+    </Row>
+  </Container>
+</section>
+
+    
     </div>
   );
 }
