@@ -3,7 +3,7 @@
   }
   
   .teachers-list {
-    width: 30%;
+    width: 28%;
     border-right: 1px solid #ccc;
     box-sizing: border-box;
     max-height: 80vh;
@@ -16,6 +16,12 @@
     cursor: pointer;
     padding: 0px;
     border: 1px solid #ccc;
+    background-color: rgb(68, 213, 223);
+  }
+ 
+  .teacher-item:hover
+  {
+    background-color: rgb(94, 154, 158);
   }
   .drop-box
   {
@@ -26,14 +32,17 @@
    
   }
   .teacher-item img {
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    margin-right: 10px;
+    margin: 20px;
+    box-shadow: 0px 0px 7px 0px #ccc;
+    border: 1px solid #ccc;
+ 
   }
   
   .chat-interface {
-    width: 70%;
+    width: 72%;
     padding: 20px;
     box-sizing: border-box;
     max-height:80vh;
@@ -42,14 +51,84 @@
   .message-area{
     height: 100%;
     overflow-y: auto;
-    max-height: 50vh;
+    max-height: 55vh;
     min-height: 50vh;
     border-top: 1px solid #000000;
+    padding-top: 10px;
   }
-  .selected-teacher img
-    {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        margin-right: 10px;
-    }
+  .message {
+    padding: 10px;
+    margin-bottom: 5px;
+    max-width: 70%;
+    word-wrap: break-word;
+  }
+  
+  .sent {
+    background-color: #DCF8C6;
+    align-self: flex-end;
+    margin-left: 80%;
+    border-radius: 25px;
+  }
+  
+  .received {
+    background-color: #6de213;
+    align-self: flex-start;
+    margin-right: 80%;
+    border-radius: 25px;
+  }
+  
+  .selected-teacher {
+    display: flex;
+    align-items: center;
+    margin: -20px -20px 5px -10px;
+    background-color: rgb(86, 221, 230);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.selected-teacher img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+    box-shadow: 0px 0px 5px 0px #ccc;
+    border: 2px solid #ccc;
+}
+
+.selected-teacher p {
+    margin: 0;
+}
+
+
+
+.input-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;}
+
+
+  
+.input-container button {
+  padding: 10px;
+  background-color: #0ef;
+  border-radius: 15px;
+  color: #1f293a;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: .5s ease;
+  width: 150px;
+  height: 50px;
+  font-size: 1em;
+  margin-bottom: 20px;
+}
+
+.input-container button:hover {
+  background-color: rgb(56, 189, 255);
+}
+
+.input-container input {
+
+  border:2px solid #000000; 
+  border-radius: 5px rgb(0, 0, 0);
+}

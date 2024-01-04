@@ -221,7 +221,7 @@ export default function Query() {
           <Link to={`/home?identifier=${identifier}&userType=${userType}`} className="nav-link">Home</Link>
             <Link to={`/query?identifier=${identifier}&userType=${userType}`} className="nav-link">Query</Link>
             <Link to={`/chat?identifier=${identifier}&userType=${userType}`} className="nav-link">Chat</Link>
-            <Nav.Link href={`#gallery?identifier=${identifier}&userType=${userType}`}>Other</Nav.Link>
+            <Nav.Link href={`/expo?identifier=${identifier}&userType=${userType}`}>Other</Nav.Link>
             <Dropdown
               show={showDropdown}
               align="end"

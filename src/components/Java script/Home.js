@@ -49,7 +49,7 @@ export default function Home() {
 
 
   // Notes
-  const [mode, setMode] = useState('add'); // 'add' or 'view'
+  const [mode, setMode] = useState('add'); 
   const [noteData, setNoteData] = useState({
     content: '',
   });
@@ -130,7 +130,8 @@ export default function Home() {
   };
 
   const viewProfile = () => {
-    window.location.href = '/profile';
+    window.location.href = `/profile?identifier=${identifier}&userType=${userType}`;
+
   };
 
  
@@ -199,7 +200,7 @@ export default function Home() {
            <Nav.Link href={`#home?identifier=${identifier}&userType=${userType}`}>Home</Nav.Link>
             <Link to={`/query?identifier=${identifier}&userType=${userType}`} className="nav-link">Query</Link>
             <Link to={`/chat?identifier=${identifier}&userType=${userType}`} className="nav-link">Chat</Link>
-            <Nav.Link href="#gallery">Other</Nav.Link>
+            <Link to={`/expo?identifier=${identifier}&userType=${userType}`} className="nav-link">project Expo</Link>
             <Dropdown
               show={showDropdown}
               align="end"

@@ -6,6 +6,7 @@ import Home from "./components/Java script/Home";
 import Query from "./components/Java script/Query";
 import Profile from "./components/Java script/Profile";
 import Chat from "./components/Java script/Chat";
+import Expo from "./components/Java script/Expo";
 function App() {
   return (
     <div className="App">
@@ -17,6 +18,7 @@ function App() {
         <Route path="/query" element={<Query />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/chat" element={<Chat />} />
+        <Route path="/expo" element={<Expo />} />
       </Routes>    
       </BrowserRouter></div>
 

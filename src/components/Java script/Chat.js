@@ -41,9 +41,10 @@ import ee8 from '../Images/EE8.jpg';
 
 export default function Chat() {
 
-  const socket = io('http://localhost:5000');
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedDepartment, setSelectedDepartment] = useState(null);
+   const [roomName, setRoomName] = useState('');
+
   const [userData, setUserData] = useState({ name: '', number: '' });
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -59,49 +60,83 @@ export default function Chat() {
     Email: 'usharani@gmail.com',
   });
 
-  useEffect(() => {
-    const selectedTeacherEmail = selectedTeacher ? selectedTeacher.Email : null;
-    // Join the chat room when the component mounts
-    socket.emit('joinRoom', { identifier, selectedTeacherEmail });
+  
 
-    // Listen for private chat messages
-    socket.on('privateMessage', (data) => {
-      const { sender, receiver, message } = data;
-      const updatedMessages = {
-        ...teacherMessages,
-        [receiver]: [...(teacherMessages[receiver] || []), { sender, message }],
-      };
-      setTeacherMessages(updatedMessages);
-    });
-
-    // Cleanup on component unmount
-    return () => {
-      socket.disconnect(); // Disconnect the WebSocket when the component unmounts
+useEffect(() => {
+    const fetchChatMessages = async (selectedTeacherEmail) => {
+      try {
+        const response = await fetch(`http://localhost:5000/api/getChatMessages/${identifier}/${selectedTeacherEmail}`);
+        const chatMessages = await response.json();
+        console.log('Fetched Existing Messages:', chatMessages);
+        setTeacherMessages({
+          ...teacherMessages,
+          [selectedTeacherEmail]: chatMessages,
+        });
+      } catch (error) {
+        console.error('Error fetching existing chat messages:', error);
+      }
     };
+
+    const fetchMessagesAtInterval = () => {
+      if (selectedTeacher && selectedTeacher.Email) {
+        fetchChatMessages(selectedTeacher.Email);
+      }
+    };
+
+    // Fetch messages initially
+    fetchMessagesAtInterval();
+
+    // Set up interval to fetch messages every 5 seconds (adjust as needed)
+    const intervalId = setInterval(fetchMessagesAtInterval, 5000);
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(intervalId);
   }, [identifier, selectedTeacher, teacherMessages]);
 
-  const handleSendMessage = () => {
-    if (newMessage.trim() === '' || !selectedTeacher) return;
+const handleSendMessage = async () => {
+  if (newMessage.trim() === '' || !selectedTeacher) return;
 
-    const updatedMessages = {
-      ...teacherMessages,
-      [selectedTeacher.Email]: [
-        ...(teacherMessages[selectedTeacher.Email] || []),
-        { sender: identifier, message: newMessage },
-      ],
-    };
-    setTeacherMessages(updatedMessages);
-    setNewMessage('');
+  const selectedTeacherEmail = selectedTeacher.Email;
 
-    const selectedTeacherEmail = selectedTeacher && selectedTeacher.Email;
-
-    // Emit a private message event to the server
-    socket.emit('privateMessage', {
-      sender: identifier,
-      receiver: selectedTeacherEmail,
-      message: newMessage,
+  // Store the chat message in the database
+  try {
+    await fetch('http://localhost:5000/api/storeChatMessages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        identifier,
+        selectedTeacherEmail,
+        messages: [
+          {
+            sender: identifier,
+            message: newMessage,
+          },
+        ],
+      }),
     });
-  };
+    console.log('Message sent and stored successfully');
+  } catch (error) {
+    console.error('Error storing chat message:', error);
+  }
+
+  try {
+    // Fetch updated chat messages with the new selectedTeacherEmail
+    const response = await fetch(`http://localhost:5000/api/getChatMessages/${identifier}/${selectedTeacherEmail}`);
+    const chatMessages = await response.json();
+    console.log('Fetched Updated Messages:', chatMessages);
+    setTeacherMessages({
+      ...teacherMessages,
+      [selectedTeacherEmail]: chatMessages,
+    });
+  } catch (error) {
+    console.error('Error fetching updated chat messages:', error);
+  }
+
+  setNewMessage('');
+};
+
 
   const handleLogout = () => {
     window.location.href = '/';
@@ -152,9 +187,9 @@ export default function Chat() {
     
     setSelectedTeacher(teacher);
     console.log('Selected Teacher:', teacher);
-    socket.emit('joinRoom', { identifier, selectedTeacherEmail: teacher.Email });
 
   };
+
 
   const filterTeachersByDepartment = (department) => {
     if (department === 'All') {
@@ -188,7 +223,7 @@ export default function Chat() {
   <Nav.Link href={`/home?identifier=${identifier}&userType=${userType}`}>Home</Nav.Link>
 <Link to={`/query?identifier=${identifier}&userType=${userType}`} className="nav-link">Query</Link>
 <Link to={`/chat?identifier=${identifier}&userType=${userType}`} className="nav-link">Chat</Link>
-<Nav.Link href={`#gallery?identifier=${identifier}&userType=${userType}`}>Other</Nav.Link>
+<Nav.Link href={`/expo?identifier=${identifier}&userType=${userType}`}>Project Expo</Nav.Link>
 
     <Dropdown
       show={showDropdown}
@@ -201,7 +236,8 @@ export default function Chat() {
 
       <Dropdown.Menu>
         {userData.name && <Dropdown.ItemText>{userData.name}</Dropdown.ItemText>}
-
+        <Dropdown.ItemText>{identifier}</Dropdown.ItemText>
+        <Dropdown.ItemText>{userType}</Dropdown.ItemText>
         <Dropdown.Item onClick={viewProfile}>View</Dropdown.Item>
         <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
 
@@ -249,19 +285,33 @@ export default function Chat() {
             {selectedTeacher && (
               <img src={selectedTeacher.profilePicture} alt={selectedTeacher.name} />
             )}
-            {selectedTeacher ? selectedTeacher.name : 'Select a teacher'}
+            <div className='P-tags'>
+            {selectedTeacher && <p>{selectedTeacher.name}</p>}
             {selectedTeacher && <p>{selectedTeacher.department}</p>}
             {selectedTeacher && <p>{selectedTeacher.Email}</p> }
+            {roomName && <p>Room Name: {roomName}</p>} 
+
+            </div>
+           
+
           </div>
 
-     <div className="message-area">
-        {teacherMessages[selectedTeacher.Email] &&
-          teacherMessages[selectedTeacher.Email].map((chat, index) => (
-            <div key={index} className={chat.sender === identifier ? 'sent' : 'received'}>
-              <strong>{chat.sender}:</strong> {chat.message}
-            </div>
-          ))}
-      </div>
+          <div className="message-area">
+  {teacherMessages[selectedTeacher.Email]?.map((chat, index) => (
+    <div
+      key={index}
+      className={`message ${chat.identifier === identifier ? 'sent' : 'received'}`}
+    >
+       {chat.messages[0].message}
+    </div>
+  ))}
+</div>
+
+  
+
+
+
+
 
 
           <div className="text-box">

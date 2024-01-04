@@ -1,8 +1,16 @@
 // Profile.js
 import React from 'react';
 import '../CSS/Profile.css';
+import faculty from '../Images/faculty0.png';
+import { useLocation,Link} from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+
 
 const Profile = () => {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const identifier = queryParams.get('identifier');
+  const userType = queryParams.get('userType');
   const studentData = {
     name: 'Konduru Easwanth Naga Narasimha',
     registrationNumber: '12106096',
@@ -48,11 +56,16 @@ const Profile = () => {
   return (
     <div id="profile-page" className="profile-container">
       <div className="profile-header">
-        <img src="https://via.placeholder.com/150" alt="Profile Picture" />
+        <img src={faculty} alt="Profile Picture" />
+        <h1 > STUDENT PROFILE </h1>
         <div className="profile-info">
           <h1>{studentData.name}</h1>
           <p>Prov. Regd. # {studentData.registrationNumber}</p>
           <p>Date of birth: {studentData.dateOfBirth}</p>
+          <Button>
+            <Link to={`/home?identifier=${identifier}&userType=${userType}`} className="nav-link">Home</Link>
+          </Button>
+
         </div>
       </div>
 
