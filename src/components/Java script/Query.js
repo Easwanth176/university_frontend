@@ -150,7 +150,7 @@ export default function Query() {
   const fetchQueries = async () => {
     try {
       const unresolvedResponse = await fetch('https://sathyabama-backend.onrender.com/api/unresolvedQueries');
-      const solvedResponse = await fetch('https://sathyabama-backend.onrender.com/api/solvedQueriesWithSolutions');
+      const solvedResponse = await fetch('http://localhost:5000/api/solvedQueriesWithSolutions');
 
       const unresolvedData = await unresolvedResponse.json();
       const solvedData = await solvedResponse.json();

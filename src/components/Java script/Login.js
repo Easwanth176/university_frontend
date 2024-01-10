@@ -35,7 +35,7 @@ export default function Login() {
 
       if (response.ok) {
         console.log('Login successful');
-        const url = `/home?userType=${encodeURIComponent(formData.userType)}&identifier=${encodeURIComponent(formData.identifier)}&password=${encodeURIComponent(formData.password)}`;
+        const url = `https://sathyabama.onrender.com/home?userType=${encodeURIComponent(formData.userType)}&identifier=${encodeURIComponent(formData.identifier)}&password=${encodeURIComponent(formData.password)}`;
         window.location.href = url;
       } else {
         console.error('Login failed:', data.message);
