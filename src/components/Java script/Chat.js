@@ -98,7 +98,6 @@ const handleSendMessage = async () => {
 
   const selectedTeacherEmail = selectedTeacher.Email;
 
-  // Store the chat message in the database
   try {
     await fetch('https://sathyabama-backend.onrender.com/api/storeChatMessages', {
       method: 'POST',
@@ -122,7 +121,6 @@ const handleSendMessage = async () => {
   }
 
   try {
-    // Fetch updated chat messages with the new selectedTeacherEmail
     const response = await fetch(`https://sathyabama-backend.onrender.com/api/getChatMessages/${identifier}/${selectedTeacherEmail}`);
     const chatMessages = await response.json();
     console.log('Fetched Updated Messages:', chatMessages);
@@ -220,7 +218,7 @@ const handleSendMessage = async () => {
 <Navbar.Toggle aria-controls="basic-navbar-nav" />
 <Navbar.Collapse id="basic-navbar-nav">
   <Nav className="ms-auto">
-  <Nav.Link href={`/home?identifier=${identifier}&userType=${userType}`}>Home</Nav.Link>
+<Link to={`/home?identifier=${identifier}&userType=${userType}`} className="nav-link">Query</Link>
 <Link to={`/query?identifier=${identifier}&userType=${userType}`} className="nav-link">Query</Link>
 <Link to={`/chat?identifier=${identifier}&userType=${userType}`} className="nav-link">Chat</Link>
 <Nav.Link href={`/expo?identifier=${identifier}&userType=${userType}`}>Project Expo</Nav.Link>
