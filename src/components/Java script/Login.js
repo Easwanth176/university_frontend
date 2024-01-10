@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../CSS/Login.css';
 import { Link } from 'react-router-dom';
 
+
 import backgroundImage from '../../University.jpg'; 
 
 export default function Login() {
@@ -35,8 +36,11 @@ export default function Login() {
 
       if (response.ok) {
         console.log('Login successful');
-        const url = `https://sathyabama.onrender.com/home?userType=${encodeURIComponent(formData.userType)}&identifier=${encodeURIComponent(formData.identifier)}&password=${encodeURIComponent(formData.password)}`;
-        window.location.href = url;
+        // Redirect using Link component
+        const url = `/home?userType=${encodeURIComponent(formData.userType)}&identifier=${encodeURIComponent(
+          formData.identifier
+        )}&password=${encodeURIComponent(formData.password)}`;
+        return <Link to={url} />;
       } else {
         console.error('Login failed:', data.message);
         setError('Invalid registrationNumber, email, or password');
