@@ -65,7 +65,7 @@ export default function Chat() {
 useEffect(() => {
     const fetchChatMessages = async (selectedTeacherEmail) => {
       try {
-        const response = await fetch(`http://localhost:5000/api/getChatMessages/${identifier}/${selectedTeacherEmail}`);
+        const response = await fetch(`https://sathyabama-backend.onrender.com/api/getChatMessages/${identifier}/${selectedTeacherEmail}`);
         const chatMessages = await response.json();
         console.log('Fetched Existing Messages:', chatMessages);
         setTeacherMessages({
@@ -100,7 +100,7 @@ const handleSendMessage = async () => {
 
   // Store the chat message in the database
   try {
-    await fetch('http://localhost:5000/api/storeChatMessages', {
+    await fetch('https://sathyabama-backend.onrender.com/api/storeChatMessages', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -123,7 +123,7 @@ const handleSendMessage = async () => {
 
   try {
     // Fetch updated chat messages with the new selectedTeacherEmail
-    const response = await fetch(`http://localhost:5000/api/getChatMessages/${identifier}/${selectedTeacherEmail}`);
+    const response = await fetch(`https://sathyabama-backend.onrender.com/api/getChatMessages/${identifier}/${selectedTeacherEmail}`);
     const chatMessages = await response.json();
     console.log('Fetched Updated Messages:', chatMessages);
     setTeacherMessages({

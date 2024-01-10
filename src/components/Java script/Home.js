@@ -72,7 +72,7 @@ export default function Home() {
     try {
       if (mode === 'add') {
         // Send a POST request to add a message
-        const response = await fetch('http://localhost:5000/messages/add', {
+        const response = await fetch('https://sathyabama-backend.onrender.com/messages/add', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -111,7 +111,7 @@ export default function Home() {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const response = await fetch('http://localhost:5000/messages/all');
+        const response = await fetch('https://sathyabama-backend.onrender.com/messages/all');
         const data = await response.json();
   
         if (response.ok) {
@@ -163,7 +163,7 @@ export default function Home() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/user?userType=student&registrationNumber=${identifier}`);
+        const response = await fetch(`https://sathyabama-backend.onrender.com/api/user?userType=student&registrationNumber=${identifier}`);
         const data = await response.json();
 
         if (response.ok) {

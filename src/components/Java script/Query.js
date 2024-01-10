@@ -41,7 +41,7 @@ export default function Query() {
 
   const handleResolveCheckboxChange = async (queryId, isChecked) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/setResolvedStatus/${queryId}`, {
+      const response = await fetch(`https://sathyabama-backend.onrender.com/api/setResolvedStatus/${queryId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -66,7 +66,7 @@ export default function Query() {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:5000/api/submitQuery', {
+      const response = await fetch('https://sathyabama-backend.onrender.com/api/submitQuery', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -109,7 +109,7 @@ export default function Query() {
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/api/submitSolution/${queryId}`, {
+      const response = await fetch(`https://sathyabama-backend.onrender.com/api/submitSolution/${queryId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -134,7 +134,7 @@ export default function Query() {
 
   const fetchUnresolvedQueries = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/unresolvedQueries');
+      const response = await fetch('https://sathyabama-backend.onrender.com/api/unresolvedQueries');
       const data = await response.json();
 
       if (response.ok) {
@@ -149,8 +149,8 @@ export default function Query() {
 
   const fetchQueries = async () => {
     try {
-      const unresolvedResponse = await fetch('http://localhost:5000/api/unresolvedQueries');
-      const solvedResponse = await fetch('http://localhost:5000/api/solvedQueriesWithSolutions');
+      const unresolvedResponse = await fetch('https://sathyabama-backend.onrender.com/api/unresolvedQueries');
+      const solvedResponse = await fetch('https://sathyabama-backend.onrender.com/api/solvedQueriesWithSolutions');
 
       const unresolvedData = await unresolvedResponse.json();
       const solvedData = await solvedResponse.json();
