@@ -14,9 +14,21 @@ export default function Login() {
   const [error, setError] = useState(null);
 
   const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    // Validate identifier based on userType
+    if (formData.userType === 'student' && !/^\d+$/.test(value)) {
+      setError('Student doest not exist');
+    } 
+    // teacher should be login eamil only ending with @gmail.com
+
+    else {
+      setError(null);
+    }
+
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
   };
 

@@ -218,7 +218,7 @@ const handleSendMessage = async () => {
 <Navbar.Toggle aria-controls="basic-navbar-nav" />
 <Navbar.Collapse id="basic-navbar-nav">
   <Nav className="ms-auto">
-<Link to={`/home?identifier=${identifier}&userType=${userType}`} className="nav-link">Query</Link>
+<Link to={`/home?identifier=${identifier}&userType=${userType}`} className="nav-link">Home</Link>
 <Link to={`/query?identifier=${identifier}&userType=${userType}`} className="nav-link">Query</Link>
 <Link to={`/chat?identifier=${identifier}&userType=${userType}`} className="nav-link">Chat</Link>
 <Nav.Link href={`/expo?identifier=${identifier}&userType=${userType}`}>Project Expo</Nav.Link>
