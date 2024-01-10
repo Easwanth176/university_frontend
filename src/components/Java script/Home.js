@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation,Link } from 'react-router-dom';
-import { Navbar, Nav, Dropdown,Carousel } from 'react-bootstrap';
-
+import { Navbar, Nav, Dropdown,Carousel,Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 
 import '../CSS/Home.css';
@@ -26,6 +27,12 @@ export default function Home() {
 
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownVisible(!dropdownVisible);
+  };
+
 
 
   const CollegeImages = [
@@ -223,17 +230,35 @@ export default function Home() {
         </Navbar.Collapse>
       </Navbar>
 
+      <div className={`ribbon-container ${dropdownVisible ? 'open' : ''}`}>
+      {dropdownVisible && (
+        <div className="dropdown">
+          <div>Option 1</div>
+          <div>Option 2</div>
+          <div>Option 3</div>
+        </div>
+      )}
+      <button onClick={toggleDropdown}>
+        {dropdownVisible ? (
+          <>
+                       Dropdown Close
+
+            <FontAwesomeIcon icon={faArrowLeft} />
+          </>
+        ) : (
+          <>
+                      Dropdown Open 
+
+            <FontAwesomeIcon icon={faArrowRight} />
+          </>
+        )}
+      </button>
+    </div>
+
+
       <section className="home" id="home">
         <div style={{ padding: '8%' }} className="wrapper">
-          <div className="cols cols0">
-            <h1>
-              Welcome to <span className="multitext">Learning Link UP</span>
-            </h1>
-            <br />
-            <p>
-              Learning Link up is a platform where all the university members can interact with each other, a university management system is a complete solution. Reducing manual labor and intervention, this system ensures accuracy, reliability, and integrity of records, information data.
-            </p>
-          </div>
+      
           <div className="cols cols1">
             <div className="imgbox">
              
@@ -274,6 +299,33 @@ export default function Home() {
 
             </div>
           </div>
+
+
+          <div className="cols cols0">
+
+          <section className ='hapenings'>
+                      <h2>Happenings</h2> 
+                      <div className="hapenings-section">
+                        <div className="hapenings-container">
+                          <div className="view-hapenings-container">
+                                  {messages.map((message) => (
+                                      <div key={message._id}>
+                                        {message.Message}
+                                      </div>
+                                    ))}
+                          </div>
+                          {message && <p className="note-message">{message}</p>}
+                        </div>
+                      </div>
+                    </section>
+                    <div className='happenings-Button'>
+                    <Button></Button>
+
+                    </div>
+
+          
+          </div>
+
         </div>
       </section>
 

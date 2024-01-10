@@ -1,8 +1,15 @@
-import React from 'react'
+// RibbonComponent.jsx
+import React, { useState } from 'react';
+
 import '../CSS/Expo.css'
 
-export default function Expo() {
+const RibbonComponent = () => {
+  
   return (
-    <div>Expo</div>
-  )
-}
+   <div className="expo">
+    expo
+    </div>
+  );
+};
+
+export default RibbonComponent;
