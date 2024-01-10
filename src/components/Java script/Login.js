@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import '../CSS/Login.css';
-import { Link } from 'react-router-dom';
 
-
-import backgroundImage from '../../University.jpg'; 
+import backgroundImage from '../../University.jpg';
 
 export default function Login() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    userType: 'option', 
-    identifier: '', 
+    userType: 'option',
+    identifier: '',
     password: '',
   });
   const [error, setError] = useState(null);
@@ -36,11 +36,11 @@ export default function Login() {
 
       if (response.ok) {
         console.log('Login successful');
-        // Redirect using Link component
+        // Redirect using useNavigate hook
         const url = `/home?userType=${encodeURIComponent(formData.userType)}&identifier=${encodeURIComponent(
           formData.identifier
         )}&password=${encodeURIComponent(formData.password)}`;
-        return <Link to={url} />;
+        navigate(url);
       } else {
         console.error('Login failed:', data.message);
         setError('Invalid registrationNumber, email, or password');
