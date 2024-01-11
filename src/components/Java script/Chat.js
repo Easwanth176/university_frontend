@@ -1,8 +1,8 @@
-import React, { useState,useEffect} from 'react';
-import { Link ,useLocation} from 'react-router-dom';
-import '../CSS/Chat.css';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Navbar, Nav, Dropdown } from 'react-bootstrap';
-import io from 'socket.io-client'
+import '../CSS/Chat.css';
+
 
 import logoImage from '../../logo.png';
 import faculty0 from '../Images/faculty0.png';
@@ -40,11 +40,9 @@ import ee7 from '../Images/EE7.jpg';
 import ee8 from '../Images/EE8.jpg';
 
 export default function Chat() {
-
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedDepartment, setSelectedDepartment] = useState(null);
-   const [roomName, setRoomName] = useState('');
-
+  const [roomName, setRoomName] = useState('');
   const [userData, setUserData] = useState({ name: '', number: '' });
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -52,6 +50,7 @@ export default function Chat() {
   const userType = queryParams.get('userType');
   const [teacherMessages, setTeacherMessages] = useState({});
   const [newMessage, setNewMessage] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
   const [selectedTeacher, setSelectedTeacher] = useState({
     id: 1,
     name: 'Usha Rani',
@@ -60,12 +59,12 @@ export default function Chat() {
     Email: 'usharani@gmail.com',
   });
 
-  
-
-useEffect(() => {
+  useEffect(() => {
     const fetchChatMessages = async (selectedTeacherEmail) => {
       try {
-        const response = await fetch(`https://sathyabama-backend.onrender.com/api/getChatMessages/${identifier}/${selectedTeacherEmail}`);
+        const response = await fetch(
+          `https://sathyabama-backend.onrender.com/api/getChatMessages/${identifier}/${selectedTeacherEmail}`
+        );
         const chatMessages = await response.json();
         console.log('Fetched Existing Messages:', chatMessages);
         setTeacherMessages({
@@ -93,48 +92,49 @@ useEffect(() => {
     return () => clearInterval(intervalId);
   }, [identifier, selectedTeacher, teacherMessages]);
 
-const handleSendMessage = async () => {
-  if (newMessage.trim() === '' || !selectedTeacher) return;
+  const handleSendMessage = async () => {
+    if (newMessage.trim() === '' || !selectedTeacher) return;
 
-  const selectedTeacherEmail = selectedTeacher.Email;
+    const selectedTeacherEmail = selectedTeacher.Email;
 
-  try {
-    await fetch('https://sathyabama-backend.onrender.com/api/storeChatMessages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        identifier,
-        selectedTeacherEmail,
-        messages: [
-          {
-            sender: identifier,
-            message: newMessage,
-          },
-        ],
-      }),
-    });
-    console.log('Message sent and stored successfully');
-  } catch (error) {
-    console.error('Error storing chat message:', error);
-  }
+    try {
+      await fetch('https://sathyabama-backend.onrender.com/api/storeChatMessages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          identifier,
+          selectedTeacherEmail,
+          messages: [
+            {
+              sender: identifier,
+              message: newMessage,
+            },
+          ],
+        }),
+      });
+      console.log('Message sent and stored successfully');
+    } catch (error) {
+      console.error('Error storing chat message:', error);
+    }
 
-  try {
-    const response = await fetch(`https://sathyabama-backend.onrender.com/api/getChatMessages/${identifier}/${selectedTeacherEmail}`);
-    const chatMessages = await response.json();
-    console.log('Fetched Updated Messages:', chatMessages);
-    setTeacherMessages({
-      ...teacherMessages,
-      [selectedTeacherEmail]: chatMessages,
-    });
-  } catch (error) {
-    console.error('Error fetching updated chat messages:', error);
-  }
+    try {
+      const response = await fetch(
+        `https://sathyabama-backend.onrender.com/api/getChatMessages/${identifier}/${selectedTeacherEmail}`
+      );
+      const chatMessages = await response.json();
+      console.log('Fetched Updated Messages:', chatMessages);
+      setTeacherMessages({
+        ...teacherMessages,
+        [selectedTeacherEmail]: chatMessages,
+      });
+    } catch (error) {
+      console.error('Error fetching updated chat messages:', error);
+    }
 
-  setNewMessage('');
-};
-
+    setNewMessage('');
+  };
 
   const handleLogout = () => {
     window.location.href = '/';
@@ -179,15 +179,10 @@ const handleSendMessage = async () => {
     { id: 31, name: 'Ms.YAZHINI', department: 'Electrical', profilePicture: ee7, Email: 'yazhini@gmail.com' },
     { id: 32, name: 'Dr.DILSHAD SHAIK', department: 'Electrical', profilePicture: ee8, Email: 'dilshadshaik@gmail.com' },
   ];
-  
-
   const handleTeacherClick = (teacher) => {
-    
     setSelectedTeacher(teacher);
     console.log('Selected Teacher:', teacher);
-
   };
-
 
   const filterTeachersByDepartment = (department) => {
     if (department === 'All') {
@@ -197,60 +192,66 @@ const handleSendMessage = async () => {
     setSelectedDepartment(department);
   };
 
-  const filteredTeachers = selectedDepartment
-    ? teachers.filter((teacher) => teacher.department === selectedDepartment)
-    : teachers;
+  const filteredTeachers = teachers.filter(
+    (teacher) =>
+      (selectedDepartment === null || teacher.department === selectedDepartment) &&
+      (teacher.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        teacher.Email.toLowerCase().includes(searchTerm.toLowerCase()))
+  );
 
   return (
     <div className="chat-page">
-<Navbar bg="dark" expand="lg" variant="dark">
-<Navbar.Brand href="#">
-  <img
-    src={logoImage}
-    width="30"
-    height="30"
-    className="d-inline-block align-top"
-    alt="`Your` Logo"
-  />
-</Navbar.Brand>
-<span className="company-name">Satyabhama University</span>
+      <Navbar bg="dark" expand="lg" variant="dark">
+        <Navbar.Brand href="#">
+          <img
+            src={logoImage}
+            width="30"
+            height="30"
+            className="d-inline-block align-top"
+            alt="`Your` Logo"
+          />
+        </Navbar.Brand>
+        <span className="company-name">Satyabhama University</span>
 
-<Navbar.Toggle aria-controls="basic-navbar-nav" />
-<Navbar.Collapse id="basic-navbar-nav">
-  <Nav className="ms-auto">
-<Link to={`/home?identifier=${identifier}&userType=${userType}`} className="nav-link">Home</Link>
-<Link to={`/query?identifier=${identifier}&userType=${userType}`} className="nav-link">Query</Link>
-<Link to={`/chat?identifier=${identifier}&userType=${userType}`} className="nav-link">Chat</Link>
-<Nav.Link href={`/expo?identifier=${identifier}&userType=${userType}`}>Project Expo</Nav.Link>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ms-auto">
+            <Link to={`/home?identifier=${identifier}&userType=${userType}`} className="nav-link">
+              Home
+            </Link>
+            <Link to={`/query?identifier=${identifier}&userType=${userType}`} className="nav-link">
+              Query
+            </Link>
+            <Link to={`/chat?identifier=${identifier}&userType=${userType}`} className="nav-link">
+              Chat
+            </Link>
+            <Nav.Link href={`/expo?identifier=${identifier}&userType=${userType}`}>
+              Project Expo
+            </Nav.Link>
 
-    <Dropdown
-      show={showDropdown}
-      align="end"
-      onClick={() => setShowDropdown(!showDropdown)}
-    >
-      <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-        Profile
-      </Dropdown.Toggle>
+            <Dropdown
+              show={showDropdown}
+              align="end"
+              onClick={() => setShowDropdown(!showDropdown)}
+            >
+              <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                Profile
+              </Dropdown.Toggle>
 
-      <Dropdown.Menu>
-        {userData.name && <Dropdown.ItemText>{userData.name}</Dropdown.ItemText>}
-        <Dropdown.ItemText>{identifier}</Dropdown.ItemText>
-        <Dropdown.ItemText>{userType}</Dropdown.ItemText>
-        <Dropdown.Item onClick={viewProfile}>View</Dropdown.Item>
-        <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
-
-      </Dropdown.Menu>
-    </Dropdown>
-  </Nav>
-</Navbar.Collapse>
-</Navbar>
-
-
+              <Dropdown.Menu>
+                {userData.name && <Dropdown.ItemText>{userData.name}</Dropdown.ItemText>}
+                <Dropdown.ItemText>{identifier}</Dropdown.ItemText>
+                <Dropdown.ItemText>{userType}</Dropdown.ItemText>
+                <Dropdown.Item onClick={viewProfile}>View</Dropdown.Item>
+                <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
 
       <div className="chat-container">
         <div className="teachers-list">
-
-
           <div className="drop-box">
             <Dropdown>
               <Dropdown.Toggle variant="success" id="dropdown-basic">
@@ -258,12 +259,29 @@ const handleSendMessage = async () => {
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item onClick={() => filterTeachersByDepartment('All')}>All</Dropdown.Item>
-                <Dropdown.Item onClick={() => filterTeachersByDepartment('School Of Computing')}>School Of Computing</Dropdown.Item>
-                <Dropdown.Item onClick={() => filterTeachersByDepartment('Data Science')}>Data Science</Dropdown.Item>
-                <Dropdown.Item onClick={() => filterTeachersByDepartment('Business')}>Business</Dropdown.Item>
-                <Dropdown.Item onClick={() => filterTeachersByDepartment('Electrical')}>Electrical</Dropdown.Item>
+                <Dropdown.Item onClick={() => filterTeachersByDepartment('School Of Computing')}>
+                  School Of Computing
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => filterTeachersByDepartment('Data Science')}>
+                  Data Science
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => filterTeachersByDepartment('Business')}>
+                  Business
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => filterTeachersByDepartment('Electrical')}>
+                  Electrical
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
+          </div>
+
+          <div className="Teacher-search-bar">
+            <input
+              type="text"
+              placeholder="Search Teachers"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
           </div>
 
           {filteredTeachers.map((teacher) => (
@@ -275,7 +293,6 @@ const handleSendMessage = async () => {
               </div>
             </div>
           ))}
-
         </div>
 
         <div className="chat-interface">
@@ -283,34 +300,26 @@ const handleSendMessage = async () => {
             {selectedTeacher && (
               <img src={selectedTeacher.profilePicture} alt={selectedTeacher.name} />
             )}
-            <div className='P-tags'>
-            {selectedTeacher && <p>{selectedTeacher.name}</p>}
-            {selectedTeacher && <p>{selectedTeacher.department}</p>}
-            {selectedTeacher && <p>{selectedTeacher.Email}</p> }
-            {roomName && <p>Room Name: {roomName}</p>} 
-
+            <div className="P-tags">
+              {selectedTeacher && <p>{selectedTeacher.name}</p>}
+              {selectedTeacher && <p>{selectedTeacher.department}</p>}
+              {selectedTeacher && <p>{selectedTeacher.Email}</p>}
+              {roomName && <p>Room Name: {roomName}</p>}
             </div>
-           
-
           </div>
 
           <div className="message-area">
-  {teacherMessages[selectedTeacher.Email]?.map((chat, index) => (
-    <div
-      key={index}
-      className={`message ${chat.identifier === identifier ? 'sent' : 'received'}`}
-    >
-       {chat.messages[0].message}
-    </div>
-  ))}
-</div>
-
-  
-
-
-
-
-
+            {teacherMessages[selectedTeacher.Email]?.map((chat, index) => (
+              <div
+                key={index}
+                className={`message ${
+                  chat.identifier === identifier ? 'sent' : 'received'
+                }`}
+              >
+                {chat.messages[0].message}
+              </div>
+            ))}
+          </div>
 
           <div className="text-box">
             <div className="input-container">
@@ -324,9 +333,17 @@ const handleSendMessage = async () => {
             </div>
           </div>
         </div>
-
       </div>
     </div>
   );
 }
+
+
+
+
+
+
+
+
+
 

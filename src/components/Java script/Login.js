@@ -20,7 +20,6 @@ export default function Login() {
     if (formData.userType === 'student' && !/^\d+$/.test(value)) {
       setError('Student doest not exist');
     } 
-    // teacher should be login eamil only ending with @gmail.com
 
     else {
       setError(null);

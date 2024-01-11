@@ -319,7 +319,7 @@ export default function Home() {
                       </div>
                     </section>
                     <div className='happenings-Button'>
-                    <Button></Button>
+                    <Button>Add Happenings</Button>
 
                     </div>
 
@@ -429,6 +429,54 @@ export default function Home() {
                         )}
 
 
+
+<section className="research" id="research">
+      <div className="all_projects">
+        <h1 className="research_heading">Research & Projects</h1>
+
+        <div className="project">
+          <div className="phead">University</div>
+          <div className="pbody"><p>Gudlines</p></div>
+          <div className="pbutton">
+            <Link to="/researchFile">Download</Link>
+          </div>
+        </div>
+
+        <div className="project">
+          <div className="phead">Project Expo</div>
+          <div className="pbody"><p>Departments</p></div>
+          <div className="pbutton">
+            <Link to="/html2">Visit</Link>
+          </div>
+        </div>
+
+        <div className="project">
+          <div className="phead">Staff Interaction</div>
+          <div className="pbody"><p>Talk with Faculty</p></div>
+          <div className="pbutton">
+            <Link to="/html3">Visit</Link>
+          </div>
+        </div>
+
+        <div className="project">
+          <div className="phead">Club </div>
+          <div className="pbody"><p>Participate event</p></div>
+          <div className="pbutton">
+            <Link to="/club">Visit</Link>
+          </div>
+        </div>
+
+        <div className="project">
+          <div className="phead">Feedback form</div>
+          <div className="pbody"><p>Suggestion Link UP</p></div>
+          <div className="pbutton">
+            <a href="https://docs.google.com/forms/d/1NEFMkhbcFxlg-Dl1btinbVQtxc6U8nW2GTT3pZShC8I/edit" target="_blank" rel="noopener noreferrer">Submit</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
               
         <section className="gallery" id="gallery">
               <h2>Gallery</h2>
@@ -449,6 +497,8 @@ export default function Home() {
                 </div>
               </div>
         </section>
+
+
 
 
 
