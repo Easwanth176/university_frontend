@@ -75,6 +75,13 @@
 
   /* happenings */
 
+.hapenings h2
+{
+  text-align: center;
+  font-size: 2.3rem;
+  margin-top:2px;
+  color: #333;
+}
 .hapenings
 {
   margin-top: 100px;
@@ -85,28 +92,31 @@
   border: 1px solid #333;
   border-radius: 25px;
   padding: 20px;
-  max-height: 400px; 
-  overflow-y: auto;
+  
 }
-
-.happenings-button
+.happenings-Button button
 {
-  margin-top: 20px;
+  margin-top: -120px;
+  margin-left: 10%;
   margin-bottom: 20px;
-  margin-left: 10px;
-  width: 100px;
-  height: 40px;
-  border: none;
-  border-radius: 5px;
-  background-color: #3d535f;
-  color: #fff;
-  cursor: pointer;
+  
+ 
 }
 .view-hapenings-container
 {
   margin-top: 30px; 
   max-height: 250px; 
   min-width:400px;
+  max-height: 250px; 
+  overflow-y: auto;
+  
+}
+.hapenings-message
+{
+  margin-top: 10px;
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 10px;
   
 }
   
@@ -395,7 +405,6 @@ button:hover {
   top: 29%;
   left: 0;
   transform: translateY(-50%);
-  background-color: #2196F3;
   color: white;
   padding: 10px;
   display: flex;
@@ -434,30 +443,54 @@ button:hover {
   padding: 20px;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  transition: transform 0.3s ease;
+  border-radius: 0px 30px 30px 0px;
 }
 
-/* Style for individual options */
 .ribbon-container .dropdown div {
-  flex: 1; /* Make each option occupy equal space */
+  flex: 1; 
   padding: 8px;
   cursor: pointer;
   color: #333;
+  display: flex;
+  flex-direction: column;
+  
 }
 
-/* Hover effect for options */
 .ribbon-container .dropdown div:hover {
   background-color: #bbf0bd;
   color: white;
+  cursor: pointer;
+
+}
+
+
+
+a {
+  text-decoration: none;
+  color: #333; 
+  font-weight: bold; 
+  font-size: 1.2em;
+
+}
+
+a:hover {
+  color: #02060a; 
+}
+
+.icon {
+  margin-bottom: 5px; 
+  font-size: 28px; 
 }
 
 
 /* YourStyleSheet.css */
 
 .research_heading {
-  margin-top: 68px;
-  margin-bottom: 80px;
-  margin-left: -40px;
-  font-size: 68px;
+  text-align: center;
+  font-size: 4.0rem;
+  color: #333;
 }
 
 .project {
@@ -475,6 +508,12 @@ button:hover {
   border: 1px solid black;
   cursor: pointer;
   transition: all 0.3s ease;
+}
+
+.all_projects
+
+{
+  margin-left: 10%;
 }
 
 .project:hover {

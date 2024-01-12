@@ -97,7 +97,7 @@ export default function Login() {
                   onChange={handleInputChange}
                   required
                 />
-                <label>Registration Number or Email</label>
+                <label>Registration Number</label>
               </div>
               <div className="input-box">
                 <input

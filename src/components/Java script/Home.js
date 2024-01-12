@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useLocation,Link } from 'react-router-dom';
 import { Navbar, Nav, Dropdown,Carousel,Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faBriefcase, faBook, faFileAlt,faArrowLeft, faArrowRight} from '@fortawesome/free-solid-svg-icons';
+
 
 
 import '../CSS/Home.css';
@@ -232,34 +233,42 @@ export default function Home() {
 
       <div className={`ribbon-container ${dropdownVisible ? 'open' : ''}`}>
       {dropdownVisible && (
-        <div className="dropdown">
-        <div>
-          <a href="https://www.sathyabama.ac.in/" target="_blank" rel="noopener noreferrer">Home</a>
-          </div>
-          <div>
-          <a href="https://erp.sathyabama.ac.in/account/login?returnUrl=%2F" target="_blank" rel="noopener noreferrer">ERP</a>
-          </div>
-          <div>
-          <a href="https://sathyabama.cognibot.in/login/index.php" target="_blank" rel="noopener noreferrer">LMS</a>
-          </div>
-          <div>
-          <a href="https://sist.knimbus.com/user#/home" target="_blank" rel="noopener noreferrer">E-Library</a>
-          </div>
-        </div>
+       <div className="dropdown">
+       <div>
+         <FontAwesomeIcon icon={faHome} className="icon"/> 
+         <a href="https://www.sathyabama.ac.in/" target="_blank" rel="noopener noreferrer">
+           Home
+         </a>
+       </div>
+       <div>
+         <FontAwesomeIcon icon={faBriefcase} className="icon"/> {/* ERP icon */}
+         <a href="https://erp.sathyabama.ac.in/account/login?returnUrl=%2F" target="_blank" rel="noopener noreferrer">
+           ERP
+         </a>
+       </div>
+       <div>
+         <FontAwesomeIcon icon={faBook} className="icon"/> {/* LMS icon */}
+         <a href="https://sathyabama.cognibot.in/login/index.php" target="_blank" rel="noopener noreferrer">
+           LMS
+         </a>
+       </div>
+       <div>
+         <FontAwesomeIcon icon={faFileAlt} className="icon" /> {/* E-Library icon */}
+         <a href="https://sist.knimbus.com/user#/home" target="_blank" rel="noopener noreferrer">
+           Library
+         </a>
+       </div>
+     </div>
       )}
       <button onClick={toggleDropdown}>
         {dropdownVisible ? (
           <>
-                       Dropdown Close
+                      th Dropdown   Close &lt;
 
-            <FontAwesomeIcon icon={faArrowLeft} />
           </>
         ) : (
           <>
-                      Dropdown Open 
-
-            <FontAwesomeIcon icon={faArrowRight} />
-          </>
+                     &gt;          </>
         )}
       </button>
     </div>
@@ -312,7 +321,7 @@ export default function Home() {
                         <div className="hapenings-container">
                           <div className="view-hapenings-container">
                                   {messages.map((message) => (
-                                      <div key={message._id}>
+                                      <div key={message._id} className='hapenings-message'>
                                         {message.Message}
                                       </div>
                                     ))}
@@ -321,10 +330,17 @@ export default function Home() {
                         </div>
                       </div>
                     </section>
-                    <div className='happenings-Button'>
-                    <Button>Add Happenings</Button>
 
-                    </div>
+                            {userType === 'teacher' && (
+                                 <div className='happenings-Button'>
+                                 <Button>Add Happenings</Button>
+             
+                                 </div>
+                            )
+                              }
+
+
+                 
 
           
           </div>
@@ -433,10 +449,10 @@ export default function Home() {
         <h1 className="research_heading">Research & Projects</h1>
 
         <div className="project">
-          <div className="phead">University</div>
-          <div className="pbody"><p>Gudlines</p></div>
+          <div className="phead">Query</div>
+          <div className="pbody"><p>Post and solve all your queries</p></div>
           <div className="pbutton">
-            <Link to="/researchFile">Download</Link>
+            <Link to="/query">Query</Link>
           </div>
         </div>
 
@@ -444,7 +460,7 @@ export default function Home() {
           <div className="phead">Project Expo</div>
           <div className="pbody"><p>Departments</p></div>
           <div className="pbutton">
-            <Link to="/html2">Visit</Link>
+            <Link to="/expo">Expo</Link>
           </div>
         </div>
 
@@ -452,15 +468,15 @@ export default function Home() {
           <div className="phead">Staff Interaction</div>
           <div className="pbody"><p>Talk with Faculty</p></div>
           <div className="pbutton">
-            <Link to="/html3">Visit</Link>
+            <Link to="/chat">Chat</Link>
           </div>
         </div>
 
         <div className="project">
-          <div className="phead">Club </div>
-          <div className="pbody"><p>Participate event</p></div>
+          <div className="phead">Profile </div>
+          <div className="pbody"><p>View your Profile</p></div>
           <div className="pbutton">
-            <Link to="/club">Visit</Link>
+            <Link to="/profile">Profile</Link>
           </div>
         </div>
 
@@ -468,11 +484,13 @@ export default function Home() {
           <div className="phead">Feedback form</div>
           <div className="pbody"><p>Suggestion Link UP</p></div>
           <div className="pbutton">
-            <a href="https://docs.google.com/forms/d/1NEFMkhbcFxlg-Dl1btinbVQtxc6U8nW2GTT3pZShC8I/edit" target="_blank" rel="noopener noreferrer">Submit</a>
+            <a href="https://www.sathyabama.ac.in/form/student-feedback-iqac-naac" target="_blank" rel="noopener noreferrer">FeedBack</a>
           </div>
         </div>
       </div>
         </section>
+
+
 
 
               
