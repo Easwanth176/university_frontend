@@ -1,0 +1,43 @@
+/* Expo.css */
+
+.ribbon-scroll-container {
+    overflow-y: auto;
+    max-height: 400px; 
+  }
+  
+  .ribbon-expo-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .ribbon-expo-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 16px;
+    padding: 16px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .ribbon-profile-picture img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 16px;
+  }
+  
+  .ribbon-project-details h3 {
+    margin-bottom: 8px;
+  }
+  
+  .ribbon-chat-button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  

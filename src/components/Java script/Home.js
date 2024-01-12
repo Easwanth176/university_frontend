@@ -233,9 +233,18 @@ export default function Home() {
       <div className={`ribbon-container ${dropdownVisible ? 'open' : ''}`}>
       {dropdownVisible && (
         <div className="dropdown">
-          <div>Option 1</div>
-          <div>Option 2</div>
-          <div>Option 3</div>
+        <div>
+          <a href="https://www.sathyabama.ac.in/" target="_blank" rel="noopener noreferrer">Home</a>
+          </div>
+          <div>
+          <a href="https://erp.sathyabama.ac.in/account/login?returnUrl=%2F" target="_blank" rel="noopener noreferrer">ERP</a>
+          </div>
+          <div>
+          <a href="https://sathyabama.cognibot.in/login/index.php" target="_blank" rel="noopener noreferrer">LMS</a>
+          </div>
+          <div>
+          <a href="https://sist.knimbus.com/user#/home" target="_blank" rel="noopener noreferrer">E-Library</a>
+          </div>
         </div>
       )}
       <button onClick={toggleDropdown}>
@@ -280,13 +289,7 @@ export default function Home() {
         />
 
       </Carousel.Item>
-      <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src="https://so7.filmy.today/albums/raji/uploads/Kollywood/2016/May/03/PRESS_RELEASE_AND_PHOTOS_OF_SATHYABAMA_UNIVERSITY_PRE-_LAUNCH_EVENT_OF_SATHYABAMASAT/PRESS-RELEASE-AND-PHOTOS-OF-SATHYABAMA-UNIVERSITY-PRE--LAUNCH-EVENT-OF-SATHYABAMASAT-31f5d63814720868283b5fe27287da2706.jpg"
-          alt="Third slide"
-        />
-      </Carousel.Item>
+
     </Carousel>
 
 
@@ -328,11 +331,6 @@ export default function Home() {
 
         </div>
       </section>
-
-
-
-
-
                       
                       {userType === 'teacher' && (
                 <section className ='notes'>
@@ -430,7 +428,7 @@ export default function Home() {
 
 
 
-<section className="research" id="research">
+        <section className="research" id="research">
       <div className="all_projects">
         <h1 className="research_heading">Research & Projects</h1>
 
@@ -474,7 +472,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </section>
+        </section>
 
 
               

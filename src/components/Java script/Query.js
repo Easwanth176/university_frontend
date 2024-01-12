@@ -15,8 +15,7 @@ export default function Query() {
   const queryParams = new URLSearchParams(location.search);
   const identifier = queryParams.get('identifier');
   const userType = queryParams.get('userType');
-  const [filteredQueries, setFilteredQueries] = useState([]); // Add this line
-
+  const [filteredQueries, setFilteredQueries] = useState([]); 
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -150,7 +149,7 @@ export default function Query() {
   const fetchQueries = async () => {
     try {
       const unresolvedResponse = await fetch('https://sathyabama-backend.onrender.com/api/unresolvedQueries');
-      const solvedResponse = await fetch('http://localhost:5000/api/solvedQueriesWithSolutions');
+      const solvedResponse = await fetch('https://sathyabama-backend.onrender.com/api/solvedQueriesWithSolutions');
 
       const unresolvedData = await unresolvedResponse.json();
       const solvedData = await solvedResponse.json();
@@ -221,7 +220,7 @@ export default function Query() {
           <Link to={`/home?identifier=${identifier}&userType=${userType}`} className="nav-link">Home</Link>
             <Link to={`/query?identifier=${identifier}&userType=${userType}`} className="nav-link">Query</Link>
             <Link to={`/chat?identifier=${identifier}&userType=${userType}`} className="nav-link">Chat</Link>
-            <Nav.Link href={`/expo?identifier=${identifier}&userType=${userType}`}>Other</Nav.Link>
+            <Nav.Link href={`/expo?identifier=${identifier}&userType=${userType}`}>Project Expo</Nav.Link>
             <Dropdown
               show={showDropdown}
               align="end"

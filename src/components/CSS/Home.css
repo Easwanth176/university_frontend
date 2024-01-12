@@ -1,7 +1,10 @@
+
 .big-container {
     background: #ffffff;
   }
   
+
+/* navbar */
   .navbar {
     background-color: #343a40;
   }
@@ -35,6 +38,9 @@
   }
   
 
+
+
+
   .wrapper {
     display: flex;
     width: 98%;
@@ -47,10 +53,6 @@
     
   }
   
- 
-
-  
-
   
   .imgbox {
     position: relative;
@@ -390,7 +392,7 @@ button:hover {
 /* RibbonComponent.css */
 .ribbon-container {
   position: fixed;
-  top: 50%;
+  top: 29%;
   left: 0;
   transform: translateY(-50%);
   background-color: #2196F3;
@@ -428,14 +430,14 @@ button:hover {
   position: absolute;
   top: 0;
   left: 0;
-  height: 50vh;
+  height: 70vh;
   padding: 20px;
   display: flex;
   flex-direction: column;
 }
 
 /* Style for individual options */
-.dropdown div {
+.ribbon-container .dropdown div {
   flex: 1; /* Make each option occupy equal space */
   padding: 8px;
   cursor: pointer;
@@ -443,8 +445,8 @@ button:hover {
 }
 
 /* Hover effect for options */
-.dropdown div:hover {
-  background-color: #45a049;
+.ribbon-container .dropdown div:hover {
+  background-color: #bbf0bd;
   color: white;
 }
 

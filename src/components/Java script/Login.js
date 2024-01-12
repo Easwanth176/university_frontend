@@ -12,16 +12,14 @@ export default function Login() {
     password: '',
   });
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false); // Added loading state
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
-    // Validate identifier based on userType
     if (formData.userType === 'student' && !/^\d+$/.test(value)) {
-      setError('Student doest not exist');
-    } 
-
-    else {
+      setError('Student does not exist');
+    } else {
       setError(null);
     }
 
@@ -35,6 +33,8 @@ export default function Login() {
     e.preventDefault();
 
     try {
+      setLoading(true); // Set loading to true before the fetch operation
+
       const response = await fetch('https://sathyabama-backend.onrender.com/login', {
         method: 'POST',
         headers: {
@@ -47,23 +47,27 @@ export default function Login() {
 
       if (response.ok) {
         console.log('Login successful');
-        // Redirect using useNavigate hook
         const url = `/home?userType=${encodeURIComponent(formData.userType)}&identifier=${encodeURIComponent(
           formData.identifier
         )}&password=${encodeURIComponent(formData.password)}`;
         navigate(url);
       } else {
         console.error('Login failed:', data.message);
-        setError('Invalid registrationNumber, email, or password');
+        setError('Invalid registration number, email, or password');
       }
     } catch (error) {
       console.error('Error during login:', error);
       setError('Internal Server Error');
+    } finally {
+      setLoading(false); // Set loading to false after the fetch operation, whether it succeeded or failed
     }
   };
 
   return (
-    <div className="login-container">
+
+
+    <section id="login-e">
+          <div className="login-container">
       <div className="container">
         <div className="left-half">
           <img src={backgroundImage} alt="Background" width="1000" height="600" />
@@ -88,7 +92,7 @@ export default function Login() {
               <div className="input-box">
                 <input
                   type="text"
-                  name="identifier" // Changed to a more generic 'identifier'
+                  name="identifier"
                   value={formData.identifier}
                   onChange={handleInputChange}
                   required
@@ -105,17 +109,20 @@ export default function Login() {
                 />
                 <label>Password</label>
               </div>
+              {loading && <p style={{ color: 'blue' }}>Please wait...</p>} {/* Display loading message or spinner */}
               {error && <p style={{ color: 'red' }}>{error}</p>}
               <div className="forgot-pass">
                 <a href="#">Forgot your password?</a>
               </div>
-              <button type="submit" className="btn">
-                Login
+              <button type="submit" className="btn" disabled={loading}>
+                {loading ? 'Logging in...' : 'Login'}
               </button>
             </form>
           </div>
         </div>
       </div>
     </div>
+    </section>
+
   );
 }

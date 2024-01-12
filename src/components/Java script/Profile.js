@@ -27,30 +27,8 @@ const Profile = () => {
     emergencyContact: 'YourEmergencyContactNumber',
     fathersEmail: 'easwanth123@gmail.com',
     lpuEmail: 'konduru.12106096@lpu.in',
-    permanentAddress: {
-      addressLine1: '20-86/8, Berhavolu',
-      townCity: 'Gudivada (Andhra Pradesh)',
-      district: 'Krishna',
-      state: 'Andhra Pradesh',
-      country: 'India',
-      pin: '521301',
-    },
-    correspondingAddress: {
-      addressLine1: '20-86/8, Berhavolu',
-      townCity: 'Gudivada (Andhra Pradesh)',
-      district: 'Krishna',
-      state: 'Andhra Pradesh',
-      country: 'India',
-      pin: '521301',
-    },
-    pgAddress: {
-      hnoBuilding: 'YourPGHnoBuilding',
-      colony: 'YourPGColony',
-      townCity: 'YourPGTownCity',
-      district: 'YourPGDistrict',
-      state: 'YourPGState',
-      country: 'YourPGCountry',
-    },
+
+
   };
 
   return (
@@ -84,35 +62,7 @@ const Profile = () => {
           <p>LPU Email Id: {studentData.lpuEmail}</p>
         </div>
 
-        <div className="profile-section">
-          <h2>Permanent Address</h2>
-          <p>{studentData.permanentAddress.addressLine1}</p>
-          <p>{studentData.permanentAddress.townCity}</p>
-          <p>{studentData.permanentAddress.district}</p>
-          <p>{studentData.permanentAddress.state}</p>
-          <p>{studentData.permanentAddress.country}</p>
-          <p>Pin/Zip: {studentData.permanentAddress.pin}</p>
-        </div>
-
-        <div className="profile-section">
-          <h2>Corresponding Address</h2>
-          <p>{studentData.correspondingAddress.addressLine1}</p>
-          <p>{studentData.correspondingAddress.townCity}</p>
-          <p>{studentData.correspondingAddress.district}</p>
-          <p>{studentData.correspondingAddress.state}</p>
-          <p>{studentData.correspondingAddress.country}</p>
-          <p>Pin/Zip: {studentData.correspondingAddress.pin}</p>
-        </div>
-
-        <div className="profile-section">
-          <h2>Paying Guest Address</h2>
-          <p>HNo-Building: {studentData.pgAddress.hnoBuilding}</p>
-          <p>Colony: {studentData.pgAddress.colony}</p>
-          <p>Town/City: {studentData.pgAddress.townCity}</p>
-          <p>District: {studentData.pgAddress.district}</p>
-          <p>State/UT: {studentData.pgAddress.state}</p>
-          <p>Country: {studentData.pgAddress.country}</p>
-        </div>
+ 
       </div>
     </div>
   );
