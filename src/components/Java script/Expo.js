@@ -10,8 +10,8 @@ import logoImage from '../../logo.png';
 const RibbonComponent = () => {
 
 
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
+const location = useLocation();
+const queryParams = new URLSearchParams(location.search);
 const identifier = queryParams.get('identifier');
 const userType = queryParams.get('userType');
 const [showDropdown, setShowDropdown] = useState(false);
@@ -19,7 +19,6 @@ const [userData, setUserData] = useState({ name: '', number: '' });
 
 
 
-  // Sample student projects list
   const studentProjects = [
     {
       id: 1,
@@ -65,9 +64,9 @@ const [userData, setUserData] = useState({ name: '', number: '' });
 
   return (
     
-    
-    <div className="ribbon-scroll-container">
-      <Navbar bg="dark" expand="lg" variant="dark">
+    <div className='Total-container'>
+
+          <Navbar bg="dark" expand="lg" variant="dark">
         <Navbar.Brand href="#">
           <img
             src={logoImage}
@@ -115,6 +114,9 @@ const [userData, setUserData] = useState({ name: '', number: '' });
           </Nav>
         </Navbar.Collapse>
       </Navbar>
+         <div className="ribbon-scroll-container">
+  
+
       <div className="ribbon-expo-container">
         {studentProjects.map((project) => (
           <div key={project.id} className="ribbon-expo-card">
@@ -132,6 +134,9 @@ const [userData, setUserData] = useState({ name: '', number: '' });
         ))}
       </div>
     </div>
+
+    </div>
+ 
   );
 };
 
