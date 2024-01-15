@@ -444,8 +444,8 @@ export default function Home() {
 
 
         <section className="research" id="research">
-      <div className="all_projects">
-        <h1 className="research_heading">Research & Projects</h1>
+          <div className="all_projects">
+          <h1 className="research_heading">Research & Projects</h1>
 
         <div className="project">
           <div className="phead">Query</div>

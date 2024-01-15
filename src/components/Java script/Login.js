@@ -49,7 +49,7 @@ export default function Login() {
         console.log('Login successful');
         const url = `/home?userType=${encodeURIComponent(formData.userType)}&identifier=${encodeURIComponent(
           formData.identifier
-        )}&password=${encodeURIComponent(formData.password)}`;
+        )}`;
         navigate(url);
       } else {
         console.error('Login failed:', data.message);

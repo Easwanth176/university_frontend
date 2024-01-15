@@ -62,7 +62,7 @@
   .imgbox img {
     width: 55vw;
     height: 50vh; 
-    border: 3px solid rgb(237, 100, 100);
+    border: 3px solid #811637;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(127, 127, 127, 0.5);
   }
@@ -111,9 +111,14 @@
   margin-top: -120px;
   margin-left: 10%;
   margin-bottom: 20px;
-  
- 
+  background-color:#8A183E;
 }
+
+.happenings-Button button :hover
+{
+  background-color:#E97000;
+}
+
 .view-hapenings-container
 {
   margin-top: 30px; 
@@ -133,14 +138,7 @@
 }
   
 
-/* chat */
-.chat  h2 
-{
-    text-align: center;
-    font-size: 4.0rem;
-    margin-top: -100px;
-    color: #333;
-}
+
 
 .notes h2 
 {
@@ -169,7 +167,7 @@ h4
 }
 
 .view-notes-container div {
-  border: 1px solid #000; 
+  border: 1px solid #811637; 
   border-radius: 5px;
   padding: 10px; 
   margin-bottom: 10px;
@@ -179,7 +177,7 @@ h4
 
 
 ::-webkit-scrollbar {
-  width: 8px; 
+  width: 5px; 
 }
 
 ::-webkit-scrollbar-thumb {
@@ -218,8 +216,8 @@ h4
   margin-left: 50px;
   position: relative;
   overflow: hidden;
-  border-top: #000 2px solid;
-  border-bottom: #000 2px solid;
+  border-top: #831238 3px solid;
+  border-bottom: #831238 3px solid;
   padding: 20px 0;
   
 }
@@ -307,7 +305,6 @@ h4
   justify-content: center;
   align-items: center;
   min-height:50vh;
-  background: #ffffff; 
   margin-top: 100px;
   margin-bottom: 100px;
   margin-left: 10%;
@@ -317,11 +314,10 @@ h4
 .note-container {
   width: 1200px;
   height: 450px;
-  border: 1px solid #333;
+  border: 1px solid#811637;
   padding: 60px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(127, 127, 127, 0.5);
-  background: #ffffff; /* White background */
 }
 
 .buttons-container {
@@ -332,8 +328,8 @@ h4
 .mode-button {
   width: 48%; /* Adjusted width */
   padding: 15px;
-  background-color: #3d535f;
   color: #fff;
+  background: #E66F00;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -344,7 +340,8 @@ h4
 
 .mode-button:hover,
 .mode-button.active {
-  background: #2c4766;
+  background-color:#811637;
+
 }
 
 
@@ -387,18 +384,17 @@ button:hover {
   color: #333;
 }
 .note-header {
-  /* General styling */
-  display: flex; /* Arrange elements horizontally */
-  align-items: center; /* Vertically align elements */
-  padding: 10px; /* Adjust padding as needed */
-  border-radius: 5px; /* Rounded corners */
-  margin-bottom: -20px; /* Bottom margin */
+  display: flex; 
+  align-items: center; 
+  padding: 10px;
+  border-radius: 5px; 
+  margin-bottom: -20px; 
   margin-top: 20px;
 
   /* Label styling */
   label {
-    margin-right: 10px; /* Spacing between label and dropdown */
-    font-weight: bold; /* Emphasize the label text */
+    margin-right: 10px; 
+    font-weight: bold; 
   }
 
   /* Dropdown styling */
@@ -446,7 +442,7 @@ button:hover {
 }
 
 .ribbon-container .dropdown {
-  background-color: #EE7D18;
+  background-color: #8A183E;
   border: 1px solid #ffffff;
   position: absolute;
   top: 0;
@@ -471,8 +467,6 @@ button:hover {
 }
 
 .ribbon-container .dropdown div:hover {
-  background-color: #bbf0bd;
-  color: white;
   cursor: pointer;
 
 }
@@ -495,7 +489,9 @@ a:hover {
   font-size: 28px; 
   color: #ffffff;
 }
-
+.icon:hover {
+  color: #02060a; 
+}
 
 /* YourStyleSheet.css */
 
@@ -512,15 +508,16 @@ a:hover {
   padding: 20px 0;
   width: 92%;
   height: 10%;
-  background-color: rgb(213, 233, 226);
+  background-color: #7d2c42;
   border-radius: 30px;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border: 1px solid black;
+  border: 1px solid #25010d;
   cursor: pointer;
   transition: all 0.3s ease;
 }
+
 
 .all_projects
 
@@ -536,7 +533,7 @@ a:hover {
 .phead {
   font-size: 25px;
   font-weight: 600;
-  color: #3d535f;
+  color: #ffffff;
   cursor: pointer;
   text-transform: uppercase;
   margin-left: 10px;
@@ -545,8 +542,7 @@ a:hover {
 
 .pbody {
   font-size: 20px;
-  font-weight: 600;
-  color: #3d535f;
+  color: #ffffff;
   cursor: pointer;
   text-transform: uppercase;
   margin-left: 250px;
@@ -568,7 +564,7 @@ a:hover {
   cursor: pointer;
   text-align: center;
   text-decoration: none;
-  background-color: rgb(82, 182, 148);
+  background-color:#F87700;
   color: #fff;
   font-size: 1.2em;
   font-weight: 500;
@@ -602,14 +598,7 @@ a:hover {
       margin-right: 10px;
     }
 
-      .imgbox {
-        display: none; 
-      }
-      .wrapper {
-  
-        margin-top: -40px;
-      }
-      .cols
+  .cols
       {
         width: 90%;
 
@@ -618,7 +607,6 @@ a:hover {
       h1 {
         font-size: 3em; 
       }
-     /* query section for vertical containers */
       
       
         .Teacher-container {
@@ -639,6 +627,81 @@ a:hover {
           padding: 20px;
           margin-top: 20px;
         }
+
+        .project {
+          width: 100%;
+          margin-left: 0;
+        }
+      
+        .pbody {
+          margin-left: 10px; 
+        }
+      
+        .pbutton {
+          margin-left: -150px; 
+        }
+        .navbar-brand img {
+          margin-left:0px;
+          width: 300px;
+          height:100%;
+
+        }
+           
+       .wrapper {
+        display: flex;
+        flex-direction: column;
+        margin-top:60px;
+            }
+            .imgbox {
+              width: 110%;
+              height: 80%;
+            }
+            .hapenings
+            {
+              margin-top: 20px;
+              margin-bottom: 100px;
+              margin-left: 0%;
+              margin-right: 0%;
+              width: 100%;
+              border: 2px solid #8A183E;
+              border-radius: 25px;
+              padding: 20px;
+            }
+          .hapenings-container
+          {
+            max-width: 350px;
+            overflow-x: auto;
+            padding: 1px;
+            margin-left: 0%;
+          }
+          .happenings-Button button
+          {
+            display: none;
+          }
+          .notes  h2 
+          {
+              text-align: center;
+              font-size: 2.0rem;
+              margin-top: 80px;
+              color: #333;
+          }
+          .note-container
+          {
+            width: 100%;
+            padding:10px;
+          }
+          .research_heading {
+            text-align: center;
+            font-size: 2.0rem;
+            color:#831238;
+          }
+
+       
+     
+        
+
+
+
 
   }
   
