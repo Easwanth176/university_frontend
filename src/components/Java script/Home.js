@@ -8,7 +8,7 @@ import { faHome, faBriefcase, faBook, faFileAlt,faArrowLeft, faArrowRight} from 
 
 import '../CSS/Home.css';
 
-import logoImage from '../../logo.png';
+import logoImage from '../../logoimage.png';
 import collegeImage1 from '../Images/collage1.jpg';
 import collegeImage2 from '../Images/collage2.jpeg';
 import collegeImage3 from '../Images/collage3.jpg';
@@ -200,7 +200,6 @@ export default function Home() {
             alt="`Your` Logo"
           />
         </Navbar.Brand>
-        <span className="company-name">Satyabhama University</span>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

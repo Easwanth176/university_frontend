@@ -1,18 +1,15 @@
 
 .big-container {
-    background: #ffffff;
+  background-color: #F8F8F8;
   }
   
 
 /* navbar */
-  .navbar {
-    background-color: #343a40;
-  }
+.navbar {
+  background-color: #831238 !important;
+}
   
-  .navbar-brand {
-    color: #ffffff;
-    font-weight: bold;
-  }
+
   
   .navbar-nav .nav-link {
     color: #ffffff;
@@ -21,14 +18,13 @@
   }
   
   .navbar-nav .nav-link:hover {
-    color: #007bff;
+    color: #EE7D18;
   }
   
   .navbar-brand img {
-    width: 150px;
-    height: 150px;
-    margin-right: 30px;
-    margin-left: 25px;
+    width: 450px;
+    height:110%;
+    padding: 20px;
   }
   
   .company-name {
@@ -70,8 +66,24 @@
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(127, 127, 127, 0.5);
   }
-  
 
+ .btn {
+    width: 100%;
+    height: 45px;
+    background: #E97000;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #FEF8F2;
+    font-weight: 600;
+    transition: .5s ease;
+    padding: 12px 20px;
+}
+ .btn:hover {
+    background: #8A183E;
+}
 
   /* happenings */
 
@@ -80,7 +92,7 @@
   text-align: center;
   font-size: 2.3rem;
   margin-top:2px;
-  color: #333;
+  color: #8A183E;
 }
 .hapenings
 {
@@ -89,7 +101,7 @@
   margin-left: 10%;
   margin-right: 10%;
   width: 100%;
-  border: 1px solid #333;
+  border: 2px solid #8A183E;
   border-radius: 25px;
   padding: 20px;
   
@@ -114,7 +126,7 @@
 .hapenings-message
 {
   margin-top: 10px;
-  border: 1px solid #333;
+  border: 1px solid #8A183E;
   border-radius: 5px;
   padding: 10px;
   
@@ -434,8 +446,8 @@ button:hover {
 }
 
 .ribbon-container .dropdown {
-  background-color: #4CAF50;
-  border: 1px solid #388E3C;
+  background-color: #EE7D18;
+  border: 1px solid #ffffff;
   position: absolute;
   top: 0;
   left: 0;
@@ -469,8 +481,7 @@ button:hover {
 
 a {
   text-decoration: none;
-  color: #333; 
-  font-weight: bold; 
+  color: #ffffff;
   font-size: 1.2em;
 
 }
@@ -482,6 +493,7 @@ a:hover {
 .icon {
   margin-bottom: 5px; 
   font-size: 28px; 
+  color: #ffffff;
 }
 
 

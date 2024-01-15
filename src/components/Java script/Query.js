@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Form, Button, Navbar, Nav, Dropdown } from 'react-bootstrap';
 import '../CSS/Query.css';
-import logoImage from '../../logo.png';
+import logoImage from '../../logoimage.png';
 import { Link, useLocation } from 'react-router-dom';
 
 export default function Query() {
@@ -212,7 +212,6 @@ export default function Query() {
             alt="`Your` Logo"
           />
         </Navbar.Brand>
-        <span className="company-name">Satyabhama University</span>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

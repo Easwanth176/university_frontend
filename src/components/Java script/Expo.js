@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../CSS/Expo.css';
 import { Link, useLocation } from 'react-router-dom';
 import { Navbar, Nav, Dropdown } from 'react-bootstrap';
-import logoImage from '../../logo.png';
+import logoImage from '../../logoimage.png';
 
 
 
@@ -76,7 +76,6 @@ const [userData, setUserData] = useState({ name: '', number: '' });
             alt="`Your` Logo"
           />
         </Navbar.Brand>
-        <span className="company-name">Satyabhama University</span>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

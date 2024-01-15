@@ -4,7 +4,7 @@ import { Navbar, Nav, Dropdown } from 'react-bootstrap';
 import '../CSS/Chat.css';
 
 
-import logoImage from '../../logo.png';
+import logoImage from '../../logoimage.png';
 import faculty0 from '../Images/faculty0.png';
 import faculty1 from '../Images/faculty1.jpeg';
 import faculty2 from '../Images/faculty2.jpeg';
@@ -211,7 +211,6 @@ export default function Chat() {
             alt="`Your` Logo"
           />
         </Navbar.Brand>
-        <span className="company-name">Satyabhama University</span>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
