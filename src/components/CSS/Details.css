@@ -1,0 +1,49 @@
+.whole-container
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top:1%;
+    margin-left: 5%;
+    margin-right: 5%;
+    border: 3px solid #831238;
+    border-radius: 10px;
+    background-color: #F5F5F5;
+    padding: 1%;
+    margin-bottom:5%;
+
+}
+.container {
+    width: 80%; /* Adjust width as needed */
+    margin: 0 auto; /* Center the container */
+    display: flex;
+  }
+  
+  /* Heading style */
+  h2 {
+    text-align: center; 
+    margin-bottom: 20px; 
+  }
+  
+  /* Image styling */
+  img.img-fluid {
+    width: 300px; /* Ensure image takes full width */
+    height: 300px;
+    border-radius:  50%;
+    margin-right: 50px; /* Add some spacing to the right */
+    margin-left: -100px;
+  }
+  
+  /* Project title styling */
+  .project-title  {
+    
+    font-size: 1.9em;  
+    margin-top:25px; 
+  }
+  
+  /* Project description styling */
+  .project-description {
+    margin-bottom: 25px; /* Add spacing below the description */
+    font-size: 1.1em;
+  }

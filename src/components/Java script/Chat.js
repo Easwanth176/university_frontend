@@ -6,7 +6,7 @@ import '../CSS/Chat.css';
 
 import logoImage from '../../logoimage.png';
 import faculty0 from '../Images/faculty0.png';
-import faculty1 from '../Images/faculty1.jpeg';
+import faculty1 from '../Images/faculty1.jpg';
 import faculty2 from '../Images/faculty2.jpeg';
 import faculty3 from '../Images/faculty3.jpeg';
 import faculty4 from '../Images/faculty4.jpg';
@@ -53,10 +53,10 @@ export default function Chat() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTeacher, setSelectedTeacher] = useState({
     id: 1,
-    name: 'Usha Rani',
-    department: 'School Of Computing',
+    name: 'Veda Rishitha',
+    department: 'B.Tech CSE',
     profilePicture: faculty1,
-    Email: 'usharani@gmail.com',
+    Email: '41110167',
   });
 
   useEffect(() => {
@@ -141,14 +141,14 @@ export default function Chat() {
   };
 
   const viewProfile = () => {
-    window.location.href = '/profile';
+    window.location.href = `/profile?identifier=${identifier}&userType=${userType}`;
   };
 
   const teachers = [
-    { id: 0, name: 'Dr.Easwanth Kopnduru', department: 'School Of Computing', profilePicture: faculty0, Email: 'easwanth@gmail.com'},
-    { id: 1, name: 'Usha Rani', department: 'School Of Computing', profilePicture: faculty1, Email: 'usharani@gmail.com' },
-    { id: 2, name: 'Karthika', department: 'School Of Computing', profilePicture: faculty2, Email: 'karthika@gmail.com' },
-    { id: 3, name: 'Sandhiya', department: 'School Of Computing', profilePicture: faculty3, Email: 'sandhiya@gmail.com' },
+    { id: 0, name: 'Veda Vyas', department: 'B.Tech CSE', profilePicture: faculty0, Email: '41110152'},
+    { id: 1, name: 'Veda Rishitha', department: 'B.Tech CSE', profilePicture: faculty1, Email: '41110167' },
+    { id: 2, name: 'Sandhiya', department: 'School Of Computing', profilePicture: faculty3, Email: 'sandhiya@gmail.com' },
+    { id: 3, name: 'Karthika', department: 'School Of Computing', profilePicture: faculty2, Email: 'karthika@gmail.com' },
     { id: 4, name: 'Anubarathi', department: 'School Of Computing', profilePicture: faculty4, Email: 'anubarathi@gmail.com' },
     { id: 5, name: 'Aroul', department: 'School Of Computing', profilePicture: faculty5, Email: 'aroul@gmail.com' },
     { id: 6, name: 'Ankaya Kanni', department: 'School Of Computing', profilePicture: faculty6, Email: 'ankayakanni@gmail.com' },

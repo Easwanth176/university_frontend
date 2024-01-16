@@ -7,6 +7,8 @@ import Query from "./components/Java script/Query";
 import Profile from "./components/Java script/Profile";
 import Chat from "./components/Java script/Chat";
 import Expo from "./components/Java script/Expo";
+import Department from "./components/Java script/Department";
+import Details from "./components/Java script/Details";
 function App() {
   return (
     <div className="App">
@@ -19,6 +21,9 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/chat" element={<Chat />} />
         <Route path="/expo" element={<Expo />} />
+        <Route path="/department" element={<Department />} />
+        <Route path="/details" element={<Details />} />
+        
       </Routes>    
       </BrowserRouter></div>
 

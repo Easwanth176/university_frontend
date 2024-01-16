@@ -3,6 +3,7 @@ import { Container, Row, Col, Form, Button, Navbar, Nav, Dropdown } from 'react-
 import '../CSS/Query.css';
 import logoImage from '../../logoimage.png';
 import { Link, useLocation } from 'react-router-dom';
+import Ribbon from './Ribbon';
 
 export default function Query() {
   const [submitSuccess, setSubmitSuccess] = useState(false);
@@ -241,6 +242,7 @@ export default function Query() {
       </Navbar>
       <h2>Available Query</h2>
 
+      <Ribbon />
       <section className="answer-section">
         <Col md={6} className="solution-container">
           {unresolvedQueries.map((query) => (

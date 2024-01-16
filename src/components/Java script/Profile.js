@@ -3,6 +3,10 @@ import '../CSS/Profile.css';
 import { useLocation,Link} from 'react-router-dom';
 import { Navbar, Nav, Dropdown } from 'react-bootstrap';
 import logoImage from '../../logoimage.png';
+import faculty0 from '../Images/faculty0.png';
+import faculty1 from '../Images/faculty1.jpg';
+import faculty3 from '../Images/faculty3.jpeg';
+
 
 const Profile = () => {
   const handleLogout = () => {
@@ -17,10 +21,11 @@ const [userData, setUserData] = useState({ name: '', number: '' });
 
 
 const studentsData = [
-  { name: 'John Doe', role: 'Full Stack Developer', location: 'Bay Area, San Francisco, CA', image: 'https://bootdey.com/img/Content/avatar/avatar1.png', identifier: 'easwanth@gmail.com', phone: '(239) 816-9029', mobile: '(320) 380-4539', address: 'Bay Area, San Francisco, CA' },
-  { name: 'Jane Doe', role: 'Frontend Developer', location: 'New York, NY', image: 'https://bootdey.com/img/Content/avatar/avatar2.png', identifier: 'jane456', phone: '(123) 456-7890', mobile: '(987) 654-3210', address: 'New York, NY' },
-  { name: 'Bob Smith', role: 'Backend Developer', location: 'Los Angeles, CA', image: 'https://bootdey.com/img/Content/avatar/avatar3.png', identifier: 'bob789', phone: '(555) 555-5555', mobile: '(999) 999-9999', address: 'Los Angeles, CA' },
+  { name: 'Sandhiya', role: 'Faculty', location: 'Tamil Nadu', image: faculty3, identifier: 'sandhiya@gmail.com', phone: '9784568412', mobile: '9784568412', address: 'Satyabhama University' },
+  { name: 'Veda Vyas', role: 'Student', location: 'Tamil Nadu', image: faculty0, identifier: '41110152', phone: '9951330193', mobile: '9951330193', address: 'Satyabhama University' },
+  { name: 'Veda Rishitha', role: 'Student', location: 'Tamil Nadu', image: faculty1, identifier: '41110167', phone: '9951330193', mobile: '9951330193', address: 'Satyabhama University' },
 ];
+
 const studentDetails = studentsData.find((student) => student.identifier === identifier);
 
   if (!studentDetails) {

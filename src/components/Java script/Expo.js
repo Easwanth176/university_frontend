@@ -3,10 +3,15 @@ import '../CSS/Expo.css';
 import { Link, useLocation } from 'react-router-dom';
 import { Navbar, Nav, Dropdown } from 'react-bootstrap';
 import logoImage from '../../logoimage.png';
-
-
-
-
+import faculty0 from '../Images/faculty0.png';
+import faculty1 from '../Images/faculty1.jpg';
+import faculty2 from '../Images/faculty2.jpeg';
+import faculty3 from '../Images/faculty3.jpeg';
+import faculty4 from '../Images/faculty4.jpg';
+import faculty5 from '../Images/faculty5.jpg';
+import faculty6 from '../Images/faculty6.jpg';
+import faculty7 from '../Images/faculty7.jpg';
+import Ribbon from './Ribbon';
 const RibbonComponent = () => {
 
 
@@ -22,44 +27,78 @@ const [userData, setUserData] = useState({ name: '', number: '' });
   const studentProjects = [
     {
       id: 1,
-      name: 'John Doe',
-      profilePicture: 'profile1.jpg',
-      projectDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      contactNumber: '123-456-7890',
-      email: 'john.doe@example.com',
+      name: 'Veda Vyas',
+      profilePicture:faculty0 ,
+      projectDescription: 'Working on AI and ML Procject that can be used in the field of Agriculture', 
+      contactNumber: '9951330193',
+      email: 'veda@example.com',
     },
     {
       id: 2,
-      name: 'John Doe',
-      profilePicture: 'profile1.jpg',
-      projectDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      contactNumber: '123-456-7890',
-      email: 'john.doe@example.com',
+      name: 'Veda Rishitha',
+      profilePicture: faculty1,
+      projectDescription: 'Working on AI and ML Procject that can be used in the field of Medical',
+      contactNumber: '995133293',
+      email: 'rishita@gmail.com',
     },
     {
       id: 3,
-      name: 'John Doe',
-      profilePicture: 'profile1.jpg',
-      projectDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      contactNumber: '123-456-7890',
-      email: 'john.doe@example.com',
+      name: 'Sandhiya',
+      profilePicture: faculty2,
+      projectDescription: 'Working on AI and ML Procject that can be used in the field of Education',
+      contactNumber: '9951330193',
+      email: 'sandhiya@gmail.com',
     },
+    // add some more projects here with the same format as above
+
     {
       id: 4,
-      name: 'John Doe',
-      profilePicture: 'profile1.jpg',
-      projectDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      contactNumber: '123-456-7890',
-      email: 'john.doe@example.com',
+      name: 'Sai',
+      profilePicture: faculty3,
+      projectDescription: 'Working on AI and ML Procject that can be used in the field of Agriculture',
+      contactNumber: '9951330193',
+      email: 'teacher@gmnail.com',
     },
-    // Add more student projects as needed
+    {
+      id: 5,
+      name: 'Sri',
+      profilePicture: faculty4,
+      projectDescription: 'Working on AI and ML Procject that can be used in the field of Medical',
+      contactNumber: '9951330193',
+      email: 'teacher@gmail.com',
+    },
+    {
+      id: 6,
+      name: 'Sai',
+      profilePicture: faculty5,
+      projectDescription: 'Working on AI and ML Procject that can be used in the field of Education',
+      contactNumber: '9951330193',
+      email: 'teacher@gmail.com',
+    },
+    {
+      id: 7,
+      name: 'Sri',
+      profilePicture: faculty6,
+      projectDescription: 'Working on AI and ML Procject that can be used in the field of Agriculture',
+      contactNumber: '9951330193',
+      email: 'teacher@gmail.com ',
+    },
+    {
+      id: 8,
+      name: 'Sai',
+      profilePicture: faculty7,
+      projectDescription: 'Working on AI and ML Procject that can be used in the field of Medical',
+      contactNumber: '9951330193',
+      email: 'teacher@gmail.com',
+    },
+    
   ];
   const handleLogout = () => {
     window.location.href = '/';
   };
 
   const viewProfile = () => {
-    window.location.href = '/profile';
+    window.location.href = `/profile?identifier=${identifier}&userType=${userType}`;
   };
 
   return (
@@ -114,24 +153,28 @@ const [userData, setUserData] = useState({ name: '', number: '' });
         </Navbar.Collapse>
       </Navbar>
          <div className="ribbon-scroll-container">
-  
+         <Ribbon />
 
       <div className="ribbon-expo-container">
         {studentProjects.map((project) => (
-          <div key={project.id} className="ribbon-expo-card">
-            <div className="ribbon-profile-picture">
-              <img src={project.profilePicture} alt={project.name} />
-            </div>
-            <div className="ribbon-project-details">
-              <h3>{project.name}</h3>
-              <p>{project.projectDescription}</p>
-              <p>Contact: {project.contactNumber}</p>
-              <p>Email: {project.email}</p>
-              <button className="ribbon-chat-button">Chat</button>
-            </div>
+              <div key={project.id} className="ribbon-expo-card">
+                <div className="ribbon-profile-picture">
+                  <img src={project.profilePicture} alt={project.name} />
+                </div>
+                <div className="ribbon-project-details">
+                  <h3>{project.name}</h3>
+                  <p>{project.projectDescription}</p>
+                  <p>Contact: {project.contactNumber}</p>
+                  <p>Email: {project.email}</p>
+                 
+                    <Link to={`/details?identifier=${identifier}&userType=${userType}&id=${project.id}`} className="nav-link">
+                    <button className="ribbon-chat-button"> View Details </button>     
+                          </Link>
+                 
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
     </div>
 
     </div>

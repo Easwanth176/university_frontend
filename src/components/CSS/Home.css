@@ -634,11 +634,15 @@ a:hover {
         }
       
         .pbody {
-          margin-left: 10px; 
+          display: none;
+        }
+        .phead {
+          margin-left: 0;
+          font-size: 15px;
         }
       
         .pbutton {
-          margin-left: -150px; 
+          margin-left: -50px; 
         }
         .navbar-brand img {
           margin-left:0px;
@@ -695,13 +699,5 @@ a:hover {
             font-size: 2.0rem;
             color:#831238;
           }
-
-       
-     
-        
-
-
-
-
   }
   

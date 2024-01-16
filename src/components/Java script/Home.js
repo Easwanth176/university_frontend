@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation,Link } from 'react-router-dom';
 import { Navbar, Nav, Dropdown,Carousel,Button } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faBriefcase, faBook, faFileAlt,faArrowLeft, faArrowRight} from '@fortawesome/free-solid-svg-icons';
+import Ribbon from './Ribbon';
 
 
 
@@ -28,12 +27,6 @@ export default function Home() {
 
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [dropdownVisible, setDropdownVisible] = useState(false);
-
-  const toggleDropdown = () => {
-    setDropdownVisible(!dropdownVisible);
-  };
-
 
 
   const CollegeImages = [
@@ -230,48 +223,7 @@ export default function Home() {
         </Navbar.Collapse>
       </Navbar>
 
-      <div className={`ribbon-container ${dropdownVisible ? 'open' : ''}`}>
-      {dropdownVisible && (
-       <div className="dropdown">
-       <div>
-         <FontAwesomeIcon icon={faHome} className="icon"/> 
-         <a href="https://www.sathyabama.ac.in/" target="_blank" rel="noopener noreferrer">
-           Home
-         </a>
-       </div>
-       <div>
-         <FontAwesomeIcon icon={faBriefcase} className="icon"/> {/* ERP icon */}
-         <a href="https://erp.sathyabama.ac.in/account/login?returnUrl=%2F" target="_blank" rel="noopener noreferrer">
-           ERP
-         </a>
-       </div>
-       <div>
-         <FontAwesomeIcon icon={faBook} className="icon"/> {/* LMS icon */}
-         <a href="https://sathyabama.cognibot.in/login/index.php" target="_blank" rel="noopener noreferrer">
-           LMS
-         </a>
-       </div>
-       <div>
-         <FontAwesomeIcon icon={faFileAlt} className="icon" /> {/* E-Library icon */}
-         <a href="https://sist.knimbus.com/user#/home" target="_blank" rel="noopener noreferrer">
-           Library
-         </a>
-       </div>
-     </div>
-      )}
-      <button onClick={toggleDropdown}>
-        {dropdownVisible ? (
-          <>
-                      th Dropdown   Close &lt;
-
-          </>
-        ) : (
-          <>
-                     &gt;          </>
-        )}
-      </button>
-    </div>
-
+      <Ribbon />
 
       <section className="home" id="home">
         <div style={{ padding: '8%' }} className="wrapper">
@@ -299,14 +251,6 @@ export default function Home() {
       </Carousel.Item>
 
     </Carousel>
-
-
-
-
-
-
-
-
 
             </div>
           </div>
@@ -451,7 +395,7 @@ export default function Home() {
           <div className="phead">Query</div>
           <div className="pbody"><p>Post and solve all your queries</p></div>
           <div className="pbutton">
-            <Link to="/query">Query</Link>
+          <Link to={`/query?identifier=${identifier}&userType=${userType}`} className="nav-link">Query</Link>
           </div>
         </div>
 
@@ -459,7 +403,7 @@ export default function Home() {
           <div className="phead">Project Expo</div>
           <div className="pbody"><p>Departments</p></div>
           <div className="pbutton">
-            <Link to="/expo">Expo</Link>
+          <Link to={`/department?identifier=${identifier}&userType=${userType}`} className="nav-link">project Expo</Link>
           </div>
         </div>
 
@@ -467,7 +411,7 @@ export default function Home() {
           <div className="phead">Staff Interaction</div>
           <div className="pbody"><p>Talk with Faculty</p></div>
           <div className="pbutton">
-            <Link to="/chat">Chat</Link>
+          <Link to={`/chat?identifier=${identifier}&userType=${userType}`} className="nav-link">Chat</Link>
           </div>
         </div>
 
@@ -475,7 +419,7 @@ export default function Home() {
           <div className="phead">Profile </div>
           <div className="pbody"><p>View your Profile</p></div>
           <div className="pbutton">
-            <Link to="/profile">Profile</Link>
+          <Link to={`/profile?identifier=${identifier}&userType=${userType}`} className="nav-link">Profile</Link>
           </div>
         </div>
 
