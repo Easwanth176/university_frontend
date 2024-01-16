@@ -14,7 +14,7 @@
     margin-bottom:5%;
 
 }
-.container {
+.whole-container .container {
     width: 80%; /* Adjust width as needed */
     margin: 0 auto; /* Center the container */
     display: flex;

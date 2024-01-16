@@ -51,7 +51,7 @@ export default function Department() {
   ];
 
   return (
-    <div>
+    <div className='department-container'>
 
     <Ribbon identifier={identifier} userType={userType} />
       <Navbar bg="dark" expand="lg" variant="dark">

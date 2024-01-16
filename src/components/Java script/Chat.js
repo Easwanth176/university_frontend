@@ -224,9 +224,9 @@ export default function Chat() {
             <Link to={`/chat?identifier=${identifier}&userType=${userType}`} className="nav-link">
               Chat
             </Link>
-            <Nav.Link href={`/expo?identifier=${identifier}&userType=${userType}`}>
-              Project Expo
-            </Nav.Link>
+            <Link to={`/expo?identifier=${identifier}&userType=${userType}`} className="nav-link">
+              Expo
+            </Link>
 
             <Dropdown
               show={showDropdown}
