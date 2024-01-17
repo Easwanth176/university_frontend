@@ -9,6 +9,7 @@ import Chat from "./components/Java script/Chat";
 import Expo from "./components/Java script/Expo";
 import Department from "./components/Java script/Department";
 import Details from "./components/Java script/Details";
+import Form from "./components/Java script/Form";
 function App() {
   return (
     <div className="App">
@@ -23,7 +24,7 @@ function App() {
         <Route path="/expo" element={<Expo />} />
         <Route path="/department" element={<Department />} />
         <Route path="/details" element={<Details />} />
-        
+        <Route path="/form" element={<Form />} />
       </Routes>    
       </BrowserRouter></div>
 

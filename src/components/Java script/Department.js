@@ -108,6 +108,9 @@ export default function Department() {
           </div>
         ))}
       </div>
+      <div className='button-department'>
+      <Button variant="primary"  href={`/form?identifier=${identifier}&userType=${userType}`} >Add Projects</Button>
+      </div>
   
   </div>
   )

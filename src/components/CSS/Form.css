@@ -1,0 +1,32 @@
+/* Form.css */
+
+/* Style for the Submit button */
+button[type="submit"] {
+    color: #fff; /* Text color */
+    border: 2px solid #ffffff; /* Blue border */
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background-color:#E46E00; /* Darker color on hover */
+  }
+  
+  /* Style for the Back button */
+  .button-back {
+    background-color: #6c757d; /* Secondary button color */
+    color: #fff; /* Text color */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+    width: 250px;
+  }
+  
+  .button-back:hover {
+    background-color: #495057; /* Darker color on hover */
+  }
