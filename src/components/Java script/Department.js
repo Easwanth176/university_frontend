@@ -109,7 +109,10 @@ export default function Department() {
         ))}
       </div>
       <div className='button-department'>
-      <Button variant="primary"  href={`/form?identifier=${identifier}&userType=${userType}`} >Add Projects</Button>
+      <Button variant="primary" >
+      <Link to={`/form?identifier=${identifier}&userType=${userType}&projectType=${topic.title}`} className="btn btn-primary">Add Projects</Link>
+
+     </Button>
       </div>
   
   </div>
