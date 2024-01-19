@@ -226,6 +226,14 @@ export default function Home() {
       <Ribbon />
 
       <section className="home" id="home">
+
+      <div className='heading-home'>
+      <h1>
+            Welcome to <span class="multitext">Learning Link up</span>
+          </h1>
+      </div>
+
+
         <div style={{ padding: '8%' }} className="wrapper">
       
           <div className="cols cols1">

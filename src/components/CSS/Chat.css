@@ -16,7 +16,7 @@
     cursor: pointer;
     padding: 0px;
     border: 1px solid #ccc;
-    background-color: #FC7900;
+    background-color: #9f204a;
     color: #fff;
   }
  
@@ -65,16 +65,14 @@
   }
   
   .sent {
-    background-color: #9f204a;
-    align-self: flex-end;
+    background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
     margin-left: 80%;
     border-radius: 25px;
     color: #fff;
   }
   
   .received {
-    background-color: #96561b;
-    color: #fff;
+    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);    color: #fff;
     align-self: flex-start;
     margin-right: 80%;
     border-radius: 25px;
@@ -84,7 +82,7 @@
     display: flex;
     align-items: center;
     margin: -20px -20px 5px -10px;
-    background-color: #FD7900;
+    background-color: #9f204a;
     padding: 5px;
     border-radius: 5px;
     color: #fff;
