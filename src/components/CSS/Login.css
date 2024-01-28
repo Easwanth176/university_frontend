@@ -12,7 +12,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: #9a1f48;
+    background: #1f293a;
 }
 
 .login-container .container {
@@ -27,7 +27,7 @@
 .login-container .left-half {
     flex: 1;
     margin-right: 250px;
-    border: #831238;
+    border: #1f293a;
     border-radius: 10px;
 
   }
@@ -46,7 +46,7 @@
     left: 0;
     width: 32px;
     height: 6px;
-    background: #831238;
+    background: #2c4766;
     border-radius: 8px;
     transform-origin: 128px;
     transform: scale(2.2) rotate(calc(var(--i) * (360deg / 50)));
@@ -56,10 +56,10 @@
 
 @keyframes animateBlink {
     0% {
-        background: #FA7800;
+        background: #0ef;
     }
     25% {
-        background: #FA7800;
+        background: #2c4766;
     }
 }
 
@@ -67,7 +67,7 @@
     position: absolute;
     height: 600px;
     width: 430px;
-    background: #890c36;
+    background: #1f293a;
     padding-left: 20px;
     padding-right: 20px;
     border-radius: 10px;
