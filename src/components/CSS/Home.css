@@ -406,8 +406,6 @@ button:hover {
   }
 }
 
-/* ribbon bar css */
-/* RibbonComponent.css */
 .ribbon-container {
   position: fixed;
   top: 29%;
@@ -698,6 +696,10 @@ a:hover {
             text-align: center;
             font-size: 2.0rem;
             color:#831238;
+          }
+          .view-notes-container
+          {
+            max-height: 350px;
           }
   }
   
