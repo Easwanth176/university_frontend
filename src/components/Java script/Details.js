@@ -27,7 +27,7 @@ export default function Details() {
     const studentsData = [
       {id:'3', name: 'Sandhiya', role: 'Faculty',  image: faculty3, identifier: 'sandhiya@gmail.com', project:'AI And ML' },
       {id:'1',name: 'Veda Vyas', role: 'Student',  image: faculty0, identifier: '41110152', project:'Education' },
-      {id:'2', name: 'Veda Rishitha', role: 'Student',  image: faculty1, identifier: '41110167', project:'Medical' },
+      {id:'2', name: 'Rishitha', role: 'Student',  image: faculty1, identifier: '41110167', project:'Medical' },
     ];
   const studentDetails = studentsData.find((student) => student.id === id);
 

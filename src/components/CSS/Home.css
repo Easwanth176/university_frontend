@@ -506,7 +506,7 @@ a:hover {
   padding: 20px 0;
   width: 92%;
   height: 10%;
-  background-color: #7d2c42;
+  background: linear-gradient(to right, #831238, #f7c5da);
   border-radius: 30px;
   display: flex;
   justify-content: space-around;

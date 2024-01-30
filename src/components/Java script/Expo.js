@@ -35,7 +35,7 @@ const [userData, setUserData] = useState({ name: '', number: '' });
     },
     {
       id: 2,
-      name: 'Veda Rishitha',
+      name: 'Rishitha',
       profilePicture: faculty1,
       projectDescription: 'Working on AI and ML Procject that can be used in the field of Medical',
       contactNumber: '995133293',

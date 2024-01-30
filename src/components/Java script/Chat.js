@@ -53,7 +53,7 @@ export default function Chat() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTeacher, setSelectedTeacher] = useState({
     id: 1,
-    name: 'Veda Rishitha',
+    name: 'Rishitha',
     department: 'B.Tech CSE',
     profilePicture: faculty1,
     Email: '41110167',
@@ -146,7 +146,7 @@ export default function Chat() {
 
   const teachers = [
     { id: 0, name: 'Veda Vyas', department: 'B.Tech CSE', profilePicture: faculty0, Email: '41110152'},
-    { id: 1, name: 'Veda Rishitha', department: 'B.Tech CSE', profilePicture: faculty1, Email: '41110167' },
+    { id: 1, name: 'Rishitha', department: 'B.Tech CSE', profilePicture: faculty1, Email: '41110167' },
     { id: 2, name: 'Sandhiya', department: 'School Of Computing', profilePicture: faculty3, Email: 'sandhiya@gmail.com' },
     { id: 3, name: 'Karthika', department: 'School Of Computing', profilePicture: faculty2, Email: 'karthika@gmail.com' },
     { id: 4, name: 'Anubarathi', department: 'School Of Computing', profilePicture: faculty4, Email: 'anubarathi@gmail.com' },

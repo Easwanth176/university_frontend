@@ -23,7 +23,7 @@ const [userData, setUserData] = useState({ name: '', number: '' });
 const studentsData = [
   { name: 'Sandhiya', role: 'Faculty', location: 'Tamil Nadu', image: faculty3, identifier: 'sandhiya@gmail.com', phone: '9784568412', mobile: '9784568412', address: 'Satyabhama University' },
   { name: 'Veda Vyas', role: 'Student', location: 'Tamil Nadu', image: faculty0, identifier: '41110152', phone: '9951330193', mobile: '9951330193', address: 'Satyabhama University' },
-  { name: 'Veda Rishitha', role: 'Student', location: 'Tamil Nadu', image: faculty1, identifier: '41110167', phone: '9951330193', mobile: '9951330193', address: 'Satyabhama University' },
+  { name: 'Rishitha', role: 'Student', location: 'Tamil Nadu', image: faculty1, identifier: '41110167', phone: '9951330193', mobile: '9951330193', address: 'Satyabhama University' },
 ];
 
 const studentDetails = studentsData.find((student) => student.identifier === identifier);
