@@ -38,6 +38,13 @@ import ee5 from '../Images/EE5.jpeg';
 import ee6 from '../Images/EE6.jpg';
 import ee7 from '../Images/EE7.jpg';
 import ee8 from '../Images/EE8.jpg';
+import a from '../Images/a.jpg';
+import b from '../Images/b.jpg';
+import c from '../Images/c.jpg';
+import d from '../Images/d.jpg';
+import e from '../Images/e.jpg';
+import f from '../Images/f.jpg';
+
 
 export default function Chat() {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -149,12 +156,49 @@ export default function Chat() {
     { id: 1, name: 'Rishitha', department: 'B.Tech CSE', profilePicture: faculty1, Email: '41110167' },
     { id: 2, name: 'Sandhiya', department: 'School Of Computing', profilePicture: faculty3, Email: 'sandhiya@gmail.com' },
     { id: 3, name: 'Karthika', department: 'School Of Computing', profilePicture: faculty2, Email: 'karthika@gmail.com' },
-    { id: 4, name: 'Anubarathi', department: 'School Of Computing', profilePicture: faculty4, Email: 'anubarathi@gmail.com' },
-    { id: 5, name: 'Aroul', department: 'School Of Computing', profilePicture: faculty5, Email: 'aroul@gmail.com' },
-    { id: 6, name: 'Ankaya Kanni', department: 'School Of Computing', profilePicture: faculty6, Email: 'ankayakanni@gmail.com' },
-    { id: 7, name: 'Kamalesh', department: 'School Of Computing', profilePicture: faculty7, Email: 'kamalesh@gmail.com' },
-    { id: 8, name: 'Lakshmanan', department: 'School Of Computing', profilePicture: faculty8, Email: 'lakshmanan@gmail.com' },
-    { id: 9, name: 'Ranji', department: 'Data Science', profilePicture: ds1, Email: 'ranji@gmail.com' },
+    {
+      "id": 4,
+      "name": "manognya",
+      "department": "Electrical",
+      "profilePicture": a,
+      "Email": "41110945"
+    },
+
+    {
+      "id": 5,
+      "name": "B.Gireesh",
+      "department": "Electrical",
+      "profilePicture": b,
+      "Email": "41110173"
+    },
+    {
+      "id": 6,
+      "name": "B.Sruthi",
+      "department": "Electrical",
+      "profilePicture": c,
+      "Email": "41110154"
+    },
+    {
+      "id": 7,
+      "name": "Gollapalli Sai Srihitha",
+      "department": "Electrical",
+      "profilePicture": d,
+      "Email": "41110417"
+    },
+    {
+      "id": 8,
+      "name": "Godavarthy R P Lakshmi Aiswarya",
+      "department": "Electrical",
+      "profilePicture": e,
+      "Email": "41110406"
+    },
+    {
+      "id": 9,
+      "name": "Charitha bhooma",
+      "department": "Electrical",
+      "profilePicture": f,
+      "Email": "41110195"
+    },
     { id: 10, name: 'Angeline Aishwarya', department: 'Data Science', profilePicture: ds2, Email: 'angelineaishwarya@gmail.com' },
     { id: 11, name: 'Krithika', department: 'Data Science', profilePicture: ds3, Email: 'krithika@gmail.com' },
     { id: 12, name: 'Mirnalini', department: 'Data Science', profilePicture: ds4, Email: 'mirnalini@gmail.com' },
@@ -178,6 +222,7 @@ export default function Chat() {
     { id: 30, name: 'Mr.GOKUL PRASAD', department: 'Electrical', profilePicture: ee6, Email: 'gokulprasad@gmail.com' },
     { id: 31, name: 'Ms.YAZHINI', department: 'Electrical', profilePicture: ee7, Email: 'yazhini@gmail.com' },
     { id: 32, name: 'Dr.DILSHAD SHAIK', department: 'Electrical', profilePicture: ee8, Email: 'dilshadshaik@gmail.com' },
+
   ];
   const handleTeacherClick = (teacher) => {
     setSelectedTeacher(teacher);

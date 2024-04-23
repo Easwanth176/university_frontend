@@ -6,6 +6,12 @@ import logoImage from '../../logoimage.png';
 import faculty0 from '../Images/faculty0.png';
 import faculty1 from '../Images/faculty1.jpg';
 import faculty3 from '../Images/faculty3.jpeg';
+import a from '../Images/a.jpg';
+import b from '../Images/b.jpg';
+import c from '../Images/c.jpg';
+import d from '../Images/d.jpg';
+import e from '../Images/e.jpg';
+import f from '../Images/f.jpg';
 
 
 const Profile = () => {
@@ -24,6 +30,13 @@ const studentsData = [
   { name: 'Sandhiya', role: 'Faculty', location: 'Tamil Nadu', image: faculty3, identifier: 'sandhiya@gmail.com', phone: '9784568412', mobile: '9784568412', address: 'Satyabhama University' },
   { name: 'Veda Vyas', role: 'Student', location: 'Tamil Nadu', image: faculty0, identifier: '41110152', phone: '9951330193', mobile: '9951330193', address: 'Satyabhama University' },
   { name: 'Rishitha', role: 'Student', location: 'Tamil Nadu', image: faculty1, identifier: '41110167', phone: '9951330193', mobile: '9951330193', address: 'Satyabhama University' },
+  { name: 'manognya', role: 'Student', location: 'Tamil Nadu', image: a, identifier: '41110945', phone: '9951330193', mobile: '9951330193', address: 'Satyabhama University' },
+  { name: 'B.gireesh', role: 'Student', location: 'Tamil Nadu', image: b, identifier: '41110173 ', phone: '9951330193', mobile: '9951330193', address: 'Satyabhama University' },
+  { name: 'B sruthi', role: 'Student', location: 'Tamil Nadu', image: c, identifier: '41110154', phone: '9951330193', mobile: '9951330193', address: 'Satyabhama University' },
+  { name: 'Gollapalli Sai Srihitha', role: 'Student', location: 'Tamil Nadu', image: d, identifier: '41110417', phone: '9951330193', mobile: '9951330193', address: 'Satyabhama University' },
+  { name: 'Godavarthy R P Lakshmi Aiswarya', role: 'Student', location: 'Tamil Nadu', image: e, identifier: '41110406', phone: '9951330193', mobile: '9951330193', address: 'Satyabhama University' },
+  { name: 'Charitha bhooma', role: 'Student', location: 'Tamil Nadu', image: f, identifier: '41110195', phone: '9951330193', mobile: '9951330193', address: 'Satyabhama University' },
+
 ];
 
 const studentDetails = studentsData.find((student) => student.identifier === identifier);

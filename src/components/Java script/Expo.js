@@ -49,48 +49,7 @@ const [userData, setUserData] = useState({ name: '', number: '' });
       contactNumber: '9951330193',
       email: 'sandhiya@gmail.com',
     },
-    // add some more projects here with the same format as above
-
-    {
-      id: 4,
-      name: 'Sai',
-      profilePicture: faculty3,
-      projectDescription: 'Working on AI and ML Procject that can be used in the field of Agriculture',
-      contactNumber: '9951330193',
-      email: 'teacher@gmnail.com',
-    },
-    {
-      id: 5,
-      name: 'Sri',
-      profilePicture: faculty4,
-      projectDescription: 'Working on AI and ML Procject that can be used in the field of Medical',
-      contactNumber: '9951330193',
-      email: 'teacher@gmail.com',
-    },
-    {
-      id: 6,
-      name: 'Sai',
-      profilePicture: faculty5,
-      projectDescription: 'Working on AI and ML Procject that can be used in the field of Education',
-      contactNumber: '9951330193',
-      email: 'teacher@gmail.com',
-    },
-    {
-      id: 7,
-      name: 'Sri',
-      profilePicture: faculty6,
-      projectDescription: 'Working on AI and ML Procject that can be used in the field of Agriculture',
-      contactNumber: '9951330193',
-      email: 'teacher@gmail.com ',
-    },
-    {
-      id: 8,
-      name: 'Sai',
-      profilePicture: faculty7,
-      projectDescription: 'Working on AI and ML Procject that can be used in the field of Medical',
-      contactNumber: '9951330193',
-      email: 'teacher@gmail.com',
-    },
+ 
     
   ];
   const handleLogout = () => {

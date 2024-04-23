@@ -7,6 +7,13 @@ import faculty0 from '../Images/faculty0.png';
 import faculty1 from '../Images/faculty1.jpg';
 import faculty3 from '../Images/faculty3.jpeg';
 import Ribbon  from '../Java script/Ribbon.js';
+import a from '../Images/a.jpg';
+import b from '../Images/b.jpg';
+import c from '../Images/c.jpg';
+import d from '../Images/d.jpg';
+import e from '../Images/e.jpg';
+import f from '../Images/f.jpg';
+
 import '../CSS/Details.css';
 export default function Details() {
     const handleLogout = () => {
@@ -24,11 +31,89 @@ export default function Details() {
         const [showDropdown, setShowDropdown] = useState(false);
         const [userData, setUserData] = useState({ name: '', number: '' });
 
-    const studentsData = [
-      {id:'3', name: 'Sandhiya', role: 'Faculty',  image: faculty3, identifier: 'sandhiya@gmail.com', project:'AI And ML' },
-      {id:'1',name: 'Veda Vyas', role: 'Student',  image: faculty0, identifier: '41110152', project:'Education' },
-      {id:'2', name: 'Rishitha', role: 'Student',  image: faculty1, identifier: '41110167', project:'Medical' },
-    ];
+        const studentsData = [
+          {
+            id: '3',
+            name: 'Sandhiya',
+            role: 'Faculty',
+            image: 'faculty3',
+            identifier: 'sandhiya@gmail.com',
+            project: 'AI And ML'
+          },
+          {
+            id: '1',
+            name: 'Veda Vyas',
+            role: 'Student',
+            image: 'faculty0',
+            identifier: '41110152',
+            project: 'Education'
+          },
+          {
+            id: '2',
+            name: 'Rishitha',
+            role: 'Student',
+            image: 'faculty1',
+            identifier: '41110167',
+            project: 'Medical'
+          },
+          {
+            id: 4,
+            name: 'manognya',
+            role: 'Faculty',
+            image: 'a',
+            identifier: '41110945',
+            project: 'Medical'
+          },
+          {
+            id: 5,
+            name: 'B.Gireesh',
+            role: 'Faculty',
+            image: 'b',
+            identifier: '41110173',
+            project: 'AI And ML'
+          },
+          {
+            id: 6,
+            name: 'B.Sruthi',
+            role: 'Faculty',
+            image: 'c',
+            identifier: '41110154',
+            project: 'Medical'
+          },
+          {
+            id: 7,
+            name: 'Gollapalli Sai Srihitha',
+            role: 'Faculty',
+            image: 'd',
+            identifier: '41110417',
+            project: 'Education'
+          },
+          {
+            id: 8,
+            name: 'Godavarthy R P Lakshmi Aiswarya',
+            role: 'Faculty',
+            image: 'e',
+            identifier: '41110406',
+            project: 'Medical'
+          },
+          {
+            id: 9,
+            name: 'Charitha bhooma',
+            role: 'Faculty',
+            image: 'f',
+            identifier: '41110195',
+            project: 'AI And ML'
+          },
+          {
+            id: '3',
+            name: 'Sandhiya',
+            role: 'Faculty',
+            image: 'faculty3',
+            identifier: 'sandhiya@gmail.com',
+            project: 'AI And ML'
+          }
+        ];
+        
   const studentDetails = studentsData.find((student) => student.id === id);
 
   if (!studentDetails) {
@@ -114,9 +199,7 @@ export default function Details() {
         </div>
         <button className="btn btn-primary">
         <Link to={`/chat?identifier=${identifier}&userType=${userType}`} className="nav-link">Chat</Link>
-
         </button>
-
           </div>
        
        
